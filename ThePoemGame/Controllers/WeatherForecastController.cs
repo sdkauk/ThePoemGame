@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ThePoemGame.Controllers
+namespace ThePoemGame.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
