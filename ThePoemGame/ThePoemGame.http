@@ -1,0 +1,6 @@
+@ThePoemGame_HostAddress = http://localhost:5209
+
+GET {{ThePoemGame_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
