@@ -1,4 +1,9 @@
-﻿using ThePoemGame.DataAccess;
+﻿using ThePoemGame.DataAccess.DataSeeder;
+using ThePoemGame.DataAccess.Repositories;
+using ThePoemGame.BusinessLogic.Services.Groups;
+using ThePoemGame.BusinessLogic.Services.Claims;
+using ThePoemGame.DataAccess;
+using ThePoemGame.BusinessLogic.Services.Users;
 
 namespace ThePoemGame.API
 {
@@ -11,6 +16,15 @@ namespace ThePoemGame.API
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddSingleton<IDbConnection, DbConnection>();
+
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IGroupRepository, GroupRepository>();
+
+            //builder.Services.AddTransient<DataSeeder>();
+
+            builder.Services.AddScoped<IGroupService, GroupService>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IClaimsService, ClaimsService>();
 
             builder.Services.AddControllers();
         }

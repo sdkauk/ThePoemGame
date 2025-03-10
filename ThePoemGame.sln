@@ -8,11 +8,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThePoemGame.API", "ThePoemG
 		{72613A11-7E69-4439-9129-1D9033BD4637} = {72613A11-7E69-4439-9129-1D9033BD4637}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThePoemGame.DataAccess", "DataAccess\ThePoemGame.DataAccess.csproj", "{72613A11-7E69-4439-9129-1D9033BD4637}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThePoemGame.DataAccess", "DataAccess\ThePoemGame.DataAccess.csproj", "{72613A11-7E69-4439-9129-1D9033BD4637}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E61DFB1C-CC27-4002-BF63-8CDAEA8A703B} = {E61DFB1C-CC27-4002-BF63-8CDAEA8A703B}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThePoemGame.BusinessLogic", "ThePoemGame.BusinessLogic\ThePoemGame.BusinessLogic.csproj", "{C4262946-3A1C-4B81-BF4A-5488D17A3A36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThePoemGame.BusinessLogic", "ThePoemGame.BusinessLogic\ThePoemGame.BusinessLogic.csproj", "{C4262946-3A1C-4B81-BF4A-5488D17A3A36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThePoemGame.Common", "ThePoemGame.Common\ThePoemGame.Common.csproj", "{E61DFB1C-CC27-4002-BF63-8CDAEA8A703B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThePoemGame.Common", "ThePoemGame.Common\ThePoemGame.Common.csproj", "{E61DFB1C-CC27-4002-BF63-8CDAEA8A703B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
