@@ -22,6 +22,7 @@ public class GroupsController : ControllerBase
     }
 
     [HttpGet]
+    [Route("user")]
     public async Task<IActionResult> GetGroupsByUser()
     {
         string userObjectId = claimsService.GetObjectId(User);
@@ -29,8 +30,8 @@ public class GroupsController : ControllerBase
         return Ok(groups);
     }
 
-    [HttpGet]
-    public async Task<IActionResult> GetGroups(Guid id)
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetGroup(Guid id)
     {
         var users = await groupService.GetGroupAsync(id);
         return Ok(users);
@@ -40,7 +41,7 @@ public class GroupsController : ControllerBase
     public async Task<IActionResult> CreateGroup(string name)
     {
         string userObjectId = claimsService.GetObjectId(User);
-        var group = await groupService.CreateGroupAsync(name,userObjectId);
-        return CreatedAtAction(nameof(Group), new {id = group.Id}, group);
+        var group = await groupService.CreateGroupAsync(name, userObjectId);
+        return CreatedAtAction(nameof(GetGroup), new { id = group.Id }, group);
     }
 }

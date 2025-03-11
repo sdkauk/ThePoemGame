@@ -21,7 +21,7 @@ public class UsersController : ControllerBase
         this.groupService = groupService;
     }
 
-    [HttpPost("join")] //Should this be post or put?
+    [HttpPost("join")]
     public async Task<IActionResult> JoinGroup(string inviteCode)
     {
         var userObjectId = claimsService.GetObjectId(User);

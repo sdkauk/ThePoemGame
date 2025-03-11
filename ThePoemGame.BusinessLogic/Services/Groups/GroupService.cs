@@ -1,5 +1,4 @@
-﻿using ThePoemGame.BusinessLogic.Services.Groups.Requests;
-using ThePoemGame.Common.Models;
+﻿using ThePoemGame.Common.Models;
 using ThePoemGame.DataAccess.Repositories;
 
 namespace ThePoemGame.BusinessLogic.Services.Groups
