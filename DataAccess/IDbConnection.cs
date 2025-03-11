@@ -13,5 +13,9 @@ namespace ThePoemGame.DataAccess
         string GroupNameCollection { get; }
         IMongoCollection<User> UserCollection { get; }
         string UserCollectionName { get; }
+        string PoemCollectionName { get; }
+        string LineCollectionName { get; }
+        IMongoCollection<Poem> PeomCollection { get; }
+        IMongoCollection<Line> LineCollection { get; }
     }
 }

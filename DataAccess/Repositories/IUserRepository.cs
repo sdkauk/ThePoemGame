@@ -11,5 +11,7 @@ namespace ThePoemGame.DataAccess.Repositories
         Task UpdateUserAsync(User user);
         Task AddGroupToUserAsync(Guid userId, BasicGroup group);
         Task RemoveGroupFromUserAsync(Guid userId, BasicGroup group);
+        Task AddGameToUserAsync(Guid userId, BasicGame game);
+        Task RemoveGameFromUserAsync(Guid userId, BasicGame game);
     }
 }
