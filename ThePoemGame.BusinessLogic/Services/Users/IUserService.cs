@@ -9,6 +9,7 @@ namespace ThePoemGame.BusinessLogic.Services.Users
         Task<bool> RemoveUserFromGroupAsync(RemoveUserFromGroupRequest request);
         Task<User> CreateUserAsync(UserPostRequest request);
         Task<User> GetCurrentUserAsync(string objectId);
-
+        Task<bool> RemoveUserFromGameAsync(RemoveUserFromGameRequest request);
+        Task<bool> AddUserToGameAsync(AddUserToGameRequest request);
     }
 }

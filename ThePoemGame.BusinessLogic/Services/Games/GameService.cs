@@ -9,7 +9,7 @@ using ThePoemGame.DataAccess.Repositories;
 
 namespace ThePoemGame.BusinessLogic.Services.Games
 {
-    public class GameService
+    public class GameService : IGameService
     {
         private readonly IGameRepository gameRepository;
         private readonly IUserRepository userRepository;
@@ -19,7 +19,16 @@ namespace ThePoemGame.BusinessLogic.Services.Games
             this.gameRepository = gameRepository;
             this.userRepository = userRepository;
         }
+        public async Task<List<Game>> GetGamesByUserAsync(string userObjectId)
+        {
+            var user = await userRepository.GetUserFromAuthenticationAsync(userObjectId);
+            return await gameRepository.GetGamesByUserAsync(user.Id);
+        }
 
+        public async Task<Game> GetGroupAsync(Guid id)
+        {
+            return await gameRepository.GetGameAsync(id);
+        }
         public async Task<Game> CreateGameAsync(GamePostRequest request, string userObjectId)
         {
             var user = new BasicUser(await userRepository.GetUserFromAuthenticationAsync(userObjectId));

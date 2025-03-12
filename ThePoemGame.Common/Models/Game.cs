@@ -19,7 +19,7 @@ namespace ThePoemGame.Common.Models
         public int MaxPlayers { get; set; }
         public int LinesPerPoem { get; set; }
         public List<BasicUser> PlayerOrder { get; set; } = new List<BasicUser>();
-
+        public string InviteCode { get; set; }
     }
 
     public enum GameStatus

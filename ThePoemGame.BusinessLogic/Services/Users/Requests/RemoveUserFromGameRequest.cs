@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace ThePoemGame.BusinessLogic.Services.Users.Requests
 {
-    public class AddUserToGroupRequest
+    public class RemoveUserFromGameRequest
     {
         public required string UserObjectId { get; set; }
-
-        public required string InviteCode { get; set; }
+        public required Guid GameId { get; set; }
 
     }
 }
