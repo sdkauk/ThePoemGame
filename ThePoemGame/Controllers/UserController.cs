@@ -21,7 +21,7 @@ public class UsersController : ControllerBase
         this.groupService = groupService;
     }
 
-    [HttpPost("join")]
+    [HttpPost("group/join")]
     public async Task<IActionResult> JoinGroup(string inviteCode)
     {
         var userObjectId = claimsService.GetObjectId(User);
@@ -34,7 +34,7 @@ public class UsersController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPost("leave")] //Should this be post or put?
+    [HttpPost("group/leave")]
     public async Task<IActionResult> LeaveGroup(Guid groupId)
     {
         var userObjectId = claimsService.GetObjectId(User);
@@ -44,6 +44,45 @@ public class UsersController : ControllerBase
             GroupId = groupId
         };
         var result = await userService.RemoveUserFromGroupAsync(request);
+        return Ok(result);
+    }
+
+    [HttpPost("game/join/invite/{inviteCode}")]
+    public async Task<IActionResult> JoinGameByInviteCode(string inviteCode)
+    {
+        var userObjectId = claimsService.GetObjectId(User);
+        var request = new AddUserToGameRequest()
+        {
+            UserObjectId = userObjectId,
+            InviteCode = inviteCode
+        };
+        var result = await userService.AddUserToGameAsync(request);
+        return Ok(result);
+    }
+
+    [HttpPost("game/join/id/{gameId}")]
+    public async Task<IActionResult> JoinGameById(Guid gameId)
+    {
+        var userObjectId = claimsService.GetObjectId(User);
+        var request = new AddUserToGameRequest()
+        {
+            UserObjectId = userObjectId,
+            GameId = gameId
+        };
+        var result = await userService.AddUserToGameAsync(request);
+        return Ok(result);
+    }
+
+    [HttpPost("game/leave")]
+    public async Task<IActionResult> LeaveGame(Guid gameId)
+    {
+        var userObjectId = claimsService.GetObjectId(User);
+        var request = new RemoveUserFromGameRequest()
+        {
+            UserObjectId = userObjectId,
+            GameId = gameId
+        };
+        var result = await userService.RemoveUserFromGameAsync(request);
         return Ok(result);
     }
 }

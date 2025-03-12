@@ -29,4 +29,12 @@ namespace ThePoemGame.Common.Models
         Completed,
         Cancelled
     }
+
+    public enum GamePhase
+    {
+        Titles,
+        RoundRobin,
+        Exhibit,
+        HOF
+    }
 }
