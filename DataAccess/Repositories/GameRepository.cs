@@ -67,6 +67,13 @@ namespace ThePoemGame.DataAccess.Repositories
             var result = await games.UpdateOneAsync(filter, update);
         }
 
+        public async Task AddPoemToGame(Guid gameId, BasicPoem poem)
+        {
+            var filter = Builders<Game>.Filter.Eq(g => g.Id, gameId);
+            var update = Builders<Game>.Update.Push(g => g.Poems, poem);
+            var result = await games.UpdateOneAsync(filter, update);
+        }
+
         public async Task DeleteGameAsync(Guid id)
         {
             var filter = Builders<Game>.Filter.Eq("Id", id);

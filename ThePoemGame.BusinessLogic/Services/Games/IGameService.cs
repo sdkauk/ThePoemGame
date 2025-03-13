@@ -7,6 +7,9 @@ namespace ThePoemGame.BusinessLogic.Services.Games
     {
         Task<Game> CreateGameAsync(GamePostRequest request, string userObjectId);
         Task<List<Game>> GetGamesByUserAsync(string userObjectId);
-        Task<Game> GetGroupAsync(Guid id);
+        Task<Game> GetGameAsync(Guid id);
+        Task PassPoemToNextPlayer(Guid poemId, Guid gameId, string? userObjectId, Guid? userId);
+        Task<bool> MoveToRoundRobinPhase(Guid gameId);
+        Task<Game> StartGameAsync(Guid gameId);
     }
 }

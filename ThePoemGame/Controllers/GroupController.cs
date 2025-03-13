@@ -33,8 +33,8 @@ public class GroupsController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetGroup(Guid id)
     {
-        var users = await groupService.GetGroupAsync(id);
-        return Ok(users);
+        var group = await groupService.GetGroupAsync(id);
+        return Ok(group);
     }
 
     [HttpPost]

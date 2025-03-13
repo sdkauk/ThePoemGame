@@ -4,6 +4,7 @@ using ThePoemGame.BusinessLogic.Services.Claims;
 using ThePoemGame.BusinessLogic.Services.Games;
 using ThePoemGame.BusinessLogic.Services.Games.Requests;
 using ThePoemGame.BusinessLogic.Services.Groups;
+using ThePoemGame.BusinessLogic.Services.Poems;
 using ThePoemGame.BusinessLogic.Services.Users;
 using ThePoemGame.Common.Models;
 
@@ -42,7 +43,7 @@ public class GamesController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateGroup([FromBody] GamePostRequest request)
+    public async Task<IActionResult> CreateGame([FromBody] GamePostRequest request)
     {
         string userObjectId = claimsService.GetObjectId(User);
         var game = await gameService.CreateGameAsync(request, userObjectId);

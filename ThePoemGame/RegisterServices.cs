@@ -5,6 +5,7 @@ using ThePoemGame.BusinessLogic.Services.Claims;
 using ThePoemGame.DataAccess;
 using ThePoemGame.BusinessLogic.Services.Users;
 using ThePoemGame.BusinessLogic.Services.Games;
+using ThePoemGame.BusinessLogic.Services.Poems;
 
 namespace ThePoemGame.API
 {
@@ -21,6 +22,7 @@ namespace ThePoemGame.API
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IGroupRepository, GroupRepository>();
             builder.Services.AddScoped<IGameRepository, GameRepository>();
+            builder.Services.AddScoped<IPoemRepository, PoemRepository>();
 
             //builder.Services.AddTransient<DataSeeder>();
 
@@ -28,6 +30,7 @@ namespace ThePoemGame.API
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IClaimsService, ClaimsService>();
             builder.Services.AddScoped<IGameService, GameService>();
+            builder.Services.AddScoped<IPoemService, PoemService>();
 
             builder.Services.AddControllers();
         }

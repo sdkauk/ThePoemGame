@@ -14,6 +14,7 @@ namespace ThePoemGame.Common.Models
         public List<BasicUser> Players { get; set; } = new List<BasicUser>();
 
         public GameStatus Status { get; set; }
+        public GamePhase Phase { get; set; }
 
         public List<BasicPoem> Poems { get; set; } = new List<BasicPoem>();
         public int MaxPlayers { get; set; }
@@ -32,9 +33,9 @@ namespace ThePoemGame.Common.Models
 
     public enum GamePhase
     {
-        Titles,
+        CreatePoems,
         RoundRobin,
         Exhibit,
-        HOF
+        Awards
     }
 }
