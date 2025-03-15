@@ -35,13 +35,28 @@ public class GamesController : ControllerBase
         return Ok(games);
     }
 
+
+    [HttpGet]
+    [Route("group")]
+    public async Task<IActionResult> GetGamesByGroup([FromQuery] Guid groupId)
+    {
+        var games = await gameService.GetGamesByGroupAsync(groupId);
+        return Ok(games);
+    }
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetGame(Guid id)
     {
         var users = await groupService.GetGroupAsync(id);
         return Ok(users);
     }
-
+    [HttpGet("{gameId}/participant")]
+    public async Task<IActionResult> IsUserInGame(Guid gameId)
+    {
+        string userObjectId = claimsService.GetObjectId(User);
+        bool isMember = await gameService.IsUserInGameAsync(gameId, userObjectId);
+        return Ok(isMember);
+    }
     [HttpPost]
     public async Task<IActionResult> CreateGame([FromBody] GamePostRequest request)
     {
@@ -49,4 +64,12 @@ public class GamesController : ControllerBase
         var game = await gameService.CreateGameAsync(request, userObjectId);
         return CreatedAtAction(nameof(GetGame), new { id = game.Id }, game);
     }
+
+    [HttpPost("{gameId}/start")]
+    public async Task<IActionResult> StartGame(Guid gameId)
+    {
+        var game = await gameService.StartGameAsync(gameId);
+        return CreatedAtAction(nameof(GetGame), new { id = game.Id }, game);
+    }
+
 }

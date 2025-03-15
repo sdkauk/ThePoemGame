@@ -32,6 +32,13 @@ namespace ThePoemGame.DataAccess.Repositories
             return await results.ToListAsync();
         }
 
+        public async Task<List<Game>> GetGamesByGroupAsync(Guid groupId)
+        {
+            var filter = Builders<Game>.Filter.Eq(g => g.GroupId, groupId);
+            var results = await games.FindAsync(filter);
+            return await results.ToListAsync();
+        }
+
         public async Task<Game> GetGameByInviteCodeAsync(string inviteCode)
         {
             if (string.IsNullOrWhiteSpace(inviteCode))

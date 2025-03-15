@@ -9,6 +9,9 @@ namespace ThePoemGame.Common.Models
         [BsonRepresentation(BsonType.String)]
         public Guid Id { get; set; }
 
+        [BsonRepresentation(BsonType.String)]
+        public Guid GroupId { get; set; }
+
         public string Name { get; set; } = "";
 
         public List<BasicUser> Players { get; set; } = new List<BasicUser>();

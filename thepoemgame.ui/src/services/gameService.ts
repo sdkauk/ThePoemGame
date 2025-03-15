@@ -18,18 +18,28 @@ export interface Game {
   name: string;
   groupId: string;
   createdBy: Player;
-  poems: BasicPoem[];
+  maxPlayers: number;
+  linesPerPoem: number;
   players: Player[];
-  currentPhase: string;
+  status: GameStatus;
   createdAt: string;
 }
 
 export interface GamePostRequest {
-  name: string;
+  maxPlayers: number;
+  linesPerPoem: number;
   groupId: string;
 }
 
+export enum GameStatus {
+  WaitingForPlayers = 0,
+  InProgress = 1,
+  Completed = 2,
+  Cancelled = 3
+}
+
 export const gameService = {
+  
   // Get all games for the current user
   getUserGames: async (): Promise<Game[]> => {
     const response = await authFetch(`${API_BASE_URL}/api/games/user`, {
@@ -38,6 +48,19 @@ export const gameService = {
     
     if (!response.ok) {
       throw new Error(`Failed to fetch user games: ${response.statusText}`);
+    }
+    
+    return response.json();
+  },
+  
+  // Get all games for a specific group
+  getGroupGames: async (groupId: string): Promise<Game[]> => {
+    const response = await authFetch(`${API_BASE_URL}/api/games/group?groupId=${groupId}`, {
+      method: 'GET',
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch group games: ${response.statusText}`);
     }
     
     return response.json();
@@ -72,4 +95,30 @@ export const gameService = {
     
     return response.json();
   },
+
+  // Add to gameService.ts
+isUserInGame: async (gameId: string): Promise<boolean> => {
+  const response = await authFetch(`${API_BASE_URL}/api/games/${gameId}/participant`, {
+    method: 'GET',
+  });
+  
+  if (!response.ok) {
+    throw new Error(`Failed to check game membership: ${response.statusText}`);
+  }
+  
+  return response.json();
+},
+
+startGame: async (gameId: string): Promise<boolean> => {
+  const response = await authFetch(`${API_BASE_URL}/api/games/${gameId}/start`, {
+    method: 'POST',
+  });
+  
+  if (!response.ok) {
+    throw new Error(`Failed to start game: ${response.statusText}`);
+  }
+  
+  return response.json();
+},
+
 };

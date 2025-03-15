@@ -11,5 +11,7 @@ namespace ThePoemGame.BusinessLogic.Services.Games
         Task PassPoemToNextPlayer(Guid poemId, Guid gameId, string? userObjectId, Guid? userId);
         Task<bool> MoveToRoundRobinPhase(Guid gameId);
         Task<Game> StartGameAsync(Guid gameId);
+        Task<List<Game>> GetGamesByGroupAsync(Guid groupId);
+        Task<bool> IsUserInGameAsync(Guid gameId, string userObjectId);
     }
 }

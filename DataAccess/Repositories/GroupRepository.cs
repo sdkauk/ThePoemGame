@@ -64,6 +64,20 @@ namespace ThePoemGame.DataAccess.Repositories
             var update = Builders<Group>.Update.PullFilter(g => g.Members, m => m.Id == user.Id);
             var result = await groups.UpdateOneAsync(filter, update);
         }
+        public async Task AddGameToGroupAsync(Guid groupId, BasicGame game)
+        {
+            var filter = Builders<Group>.Filter.Eq(g => g.Id, groupId);
+            var update = Builders<Group>.Update.Push(g => g.Games, game);
+            var result = await groups.UpdateOneAsync(filter, update);
+        }
+
+        public async Task RemoveGameFromGroupAsync(Guid groupId, BasicGame game)
+        {
+            var filter = Builders<Group>.Filter.Eq(g => g.Id, groupId);
+            var update = Builders<Group>.Update.PullFilter(g => g.Games, ga => ga.Id == game.Id);
+            var result = await groups.UpdateOneAsync(filter, update);
+        }
+
 
         public async Task DeleteGroupAsync(Guid id)
         {

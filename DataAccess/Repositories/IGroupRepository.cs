@@ -14,5 +14,7 @@ namespace ThePoemGame.DataAccess.Repositories
         Task AddUserToGroupAsync(Guid groupId, BasicUser user);
         Task RemoveUserFromGroupAsync(Guid groupId, BasicUser user);
         Task<bool> IsInviteCodeUniqueAsync(string code);
+        Task AddGameToGroupAsync(Guid groupId, BasicGame game);
+        Task RemoveGameFromGroupAsync(Guid groupId, BasicGame game);
     }
 }

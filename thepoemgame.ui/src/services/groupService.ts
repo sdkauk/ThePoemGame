@@ -1,14 +1,10 @@
 // services/groupService.ts
 import { authFetch } from '../utils/authFetch';
+import { Game } from './gameService';
 
 const API_BASE_URL = 'http://localhost:5209'; // Updated to match the API reference
 
 export interface Member {
-  id: string;
-  name: string;
-}
-
-export interface Game {
   id: string;
   name: string;
 }

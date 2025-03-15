@@ -14,22 +14,40 @@ namespace ThePoemGame.BusinessLogic.Services.Games
         private readonly IGameRepository gameRepository;
         private readonly IUserRepository userRepository;
         private readonly IPoemRepository poemRepository;
+        private readonly IGroupRepository groupRepository;
 
-        public GameService(IGameRepository gameRepository, IUserRepository userRepository, IPoemRepository poemRepository)
+        public GameService(IGameRepository gameRepository, IUserRepository userRepository, IPoemRepository poemRepository, IGroupRepository groupRepository)
         {
             this.gameRepository = gameRepository;
             this.userRepository = userRepository;
             this.poemRepository = poemRepository;
+            this.groupRepository = groupRepository;
         }
+
         public async Task<List<Game>> GetGamesByUserAsync(string userObjectId)
         {
             var user = await userRepository.GetUserFromAuthenticationAsync(userObjectId);
             return await gameRepository.GetGamesByUserAsync(user.Id);
         }
 
+        public async Task<List<Game>> GetGamesByGroupAsync(Guid groupId)
+        {
+            return await gameRepository.GetGamesByGroupAsync(groupId);
+        }
+
         public async Task<Game> GetGameAsync(Guid id)
         {
             return await gameRepository.GetGameAsync(id);
+        }
+        public async Task<bool> IsUserInGameAsync(Guid gameId, string userObjectId)
+        {
+            var user = await userRepository.GetUserFromAuthenticationAsync(userObjectId);
+            if (user == null) return false;
+
+            var game = await gameRepository.GetGameAsync(gameId);
+            if (game == null) return false;
+
+            return game.Players.Any(p => p.Id == user.Id);
         }
         public async Task<Game> CreateGameAsync(GamePostRequest request, string userObjectId)
         {
@@ -41,6 +59,7 @@ namespace ThePoemGame.BusinessLogic.Services.Games
             var game = new Game
             {
                 Id = Guid.NewGuid(),
+                GroupId = request.GroupId,
                 Name = "",
                 Players = new List<BasicUser> { user },
                 Poems = new List<BasicPoem>(),
@@ -51,6 +70,7 @@ namespace ThePoemGame.BusinessLogic.Services.Games
 
             await gameRepository.CreateGameAsync(game);
             await userRepository.AddGameToUserAsync(user.Id, new BasicGame(game));
+            await groupRepository.AddGameToGroupAsync(request.GroupId, new BasicGame(game));
 
             return game;
         }
