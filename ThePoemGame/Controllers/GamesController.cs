@@ -47,7 +47,8 @@ public class GamesController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetGame(Guid id)
     {
-        var game = await gameService.GetGameAsync(id);
+        string userObjectId = claimsService.GetObjectId(User);
+        var game = await gameService.GetGameAsync(id, userObjectId);
         return Ok(game);
     }
     [HttpGet("{gameId}/participant")]

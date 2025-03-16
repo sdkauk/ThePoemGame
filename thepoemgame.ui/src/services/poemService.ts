@@ -9,10 +9,11 @@ export interface Author {
   
 export interface Line {
   id: string;
-  text: string;
-  Author: Author;
-  createdAt: string;
+  author: Author;
+  content: string;
   lineNumber: number;
+  kudos: number;
+  lineType: LineType;
 }
 
 export interface Poem {
@@ -31,9 +32,15 @@ export interface PoemPostRequest {
 }
 
 export interface LinePostRequest {
-  text: string;
+  content: string;
   poemId: string;
   gameId: string;
+  lineType: LineType;
+}
+
+export enum LineType {
+  Call = 0,
+  Response = 1
 }
 
 export const poemService = {

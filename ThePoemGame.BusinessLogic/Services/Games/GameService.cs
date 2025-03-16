@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ThePoemGame.BusinessLogic.Services.Games.Requests;
+using ThePoemGame.BusinessLogic.Services.Games.Responses;
 using ThePoemGame.Common.Models;
 using ThePoemGame.DataAccess.Repositories;
 
@@ -35,9 +36,11 @@ namespace ThePoemGame.BusinessLogic.Services.Games
             return await gameRepository.GetGamesByGroupAsync(groupId);
         }
 
-        public async Task<Game> GetGameAsync(Guid id)
+        public async Task<GameResponse> GetGameAsync(Guid id, string userObjectId)
         {
-            return await gameRepository.GetGameAsync(id);
+            var user = await userRepository.GetUserFromAuthenticationAsync(userObjectId);
+            var game = await gameRepository.GetGameAsync(id);
+            return GameResponse.FromGame(game, user);
         }
         public async Task<bool> IsUserInGameAsync(Guid gameId, string userObjectId)
         {

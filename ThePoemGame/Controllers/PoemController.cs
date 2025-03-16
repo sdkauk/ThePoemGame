@@ -46,7 +46,8 @@ public class PoemsController : ControllerBase
         var isRoundRobinPhase = await gameService.MoveToRoundRobinPhase(request.GameId);
         if (isRoundRobinPhase)
         {
-            var allPoems = (await gameService.GetGameAsync(request.GameId)).Poems;
+            //TODO: update this to not get the game response?
+            var allPoems = (await gameService.GetGameAsync(request.GameId, userObjectId)).Poems;
             foreach(BasicPoem gamePoem in allPoems)
             {
                 await gameService.PassPoemToNextPlayer(gamePoem.Id, request.GameId, null, gamePoem.Author.Id);
