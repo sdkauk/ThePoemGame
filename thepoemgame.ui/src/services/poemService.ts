@@ -25,8 +25,9 @@ export interface Poem {
 }
 
 export interface PoemPostRequest {
-  title: string;
   gameId: string;
+  title: string;
+  firstLineContent: string
 }
 
 export interface LinePostRequest {

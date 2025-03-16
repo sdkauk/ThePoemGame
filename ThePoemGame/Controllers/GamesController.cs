@@ -47,8 +47,8 @@ public class GamesController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetGame(Guid id)
     {
-        var users = await groupService.GetGroupAsync(id);
-        return Ok(users);
+        var game = await gameService.GetGameAsync(id);
+        return Ok(game);
     }
     [HttpGet("{gameId}/participant")]
     public async Task<IActionResult> IsUserInGame(Guid gameId)

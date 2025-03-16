@@ -22,6 +22,7 @@ export interface Game {
   linesPerPoem: number;
   players: Player[];
   status: GameStatus;
+  phase: GamePhase;
   createdAt: string;
 }
 
@@ -36,6 +37,13 @@ export enum GameStatus {
   InProgress = 1,
   Completed = 2,
   Cancelled = 3
+}
+
+export enum GamePhase {
+  CreatePoems = 0,
+  RoundRobin = 1,
+  Exhibit = 2,
+  Awards = 3
 }
 
 export const gameService = {
