@@ -1,0 +1,897 @@
+/* GameDetail.module.css with lined paper styling */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  .navigation {
+    margin-bottom: 2rem;
+  }
+  
+  .backLink {
+    font-family: 'Indie Flower', cursive, sans-serif;
+    color: inherit;
+    text-decoration: none;
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .backLink:hover {
+    text-decoration: underline;
+  }
+  
+  .backLink::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 1rem;
+    height: 0.8rem;
+    background-color: currentColor;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12H5M12 19l-7-7 7-7'/%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    transform: translateY(-50%);
+  }
+  
+  .header {
+    margin-bottom: 2rem;
+  }
+  
+  .title {
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    transform: rotate(-0.5deg);
+    position: relative;
+    display: inline-block;
+  }
+  
+  .title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -5px;
+    height: 2px;
+    background-color: currentColor;
+    opacity: 0.6;
+    clip-path: polygon(
+      0% 100%, 5% 0%, 15% 100%, 25% 30%, 
+      35% 100%, 45% 30%, 55% 100%, 65% 30%, 
+      75% 100%, 85% 30%, 95% 100%, 100% 0%
+    );
+  }
+  
+  .statusContainer {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .statusItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .statusLabel {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  
+  .statusBadge, .phaseBadge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: 'Indie Flower', cursive, sans-serif;
+  }
+  
+  .statusWaiting {
+    background-color: rgba(234, 179, 8, 0.2);
+    color: rgb(161, 98, 7);
+  }
+  
+  .statusInProgress {
+    background-color: rgba(34, 197, 94, 0.2);
+    color: rgb(21, 128, 61);
+  }
+  
+  .statusCompleted {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: rgb(29, 78, 216);
+  }
+  
+  .statusCancelled {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: rgb(185, 28, 28);
+  }
+  
+  .phaseCreate {
+    background-color: rgba(168, 85, 247, 0.2);
+    color: rgb(126, 34, 206);
+  }
+  
+  .phaseRobin {
+    background-color: rgba(236, 72, 153, 0.2);
+    color: rgb(190, 24, 93);
+  }
+  
+  .phaseExhibit {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: rgb(29, 78, 216);
+  }
+  
+  .phaseAwards {
+    background-color: rgba(234, 179, 8, 0.2);
+    color: rgb(161, 98, 7);
+  }
+  
+  .phaseExplanation {
+    border: 2px solid currentColor;
+    padding: 1.25rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    background-color: transparent;
+    transform: rotate(0.2deg);
+  }
+  
+  .phaseExplanation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid currentColor;
+    z-index: -1;
+    transform: translate(3px, 3px);
+    clip-path: polygon(
+      2% 2%, 98% 1%, 99% 3%, 
+      97% 97%, 98% 99%, 3% 98%, 
+      1% 96%
+    );
+  }
+  
+  .phaseTitle {
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1.3rem;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+  }
+  
+  .phaseDescription {
+    margin-bottom: 0;
+    line-height: 1.5;
+  }
+  
+  .phaseSection {
+    margin-bottom: 3rem;
+  }
+  
+  .sectionTitle {
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    transform: rotate(-0.3deg);
+  }
+  
+  .poemForm, .addLineForm {
+    padding: 1rem 0 0;
+    position: relative;
+    background-color: transparent;
+  }
+  
+  .poemForm::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid currentColor;
+    z-index: -1;
+    transform: translate(3px, 3px);
+    clip-path: polygon(
+      2% 2%, 98% 1%, 99% 3%, 
+      97% 97%, 98% 99%, 3% 98%, 
+      1% 96%
+    );
+  }
+  
+  .formGroup {
+    margin-bottom: 1.5rem;
+  }
+  
+  .formLabel {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  
+  /* For the textarea, use a similar approach */
+  .formTextarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-left: 3px solid rgba(0, 0, 0, 0.3);
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 0;
+    transition: border-color 0.2s ease;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 1.8rem,
+      rgba(0, 0, 0, 0.1) 1.8rem,
+      rgba(0, 0, 0, 0.1) 1.9rem
+    );
+    background-position: 0 0; /* Align with text baseline */
+    line-height: 1.9rem; /* Match the repeating gradient spacing */
+    padding-top: 0; /* Remove padding to align with ruled lines */
+    padding-bottom: 0; /* Remove padding to align with ruled lines */
+    height: 3.8rem; /* Exactly 2 lines */
+  }
+  
+  .formInput:focus, .formTextarea:focus {
+    outline: none;
+    border-color: currentColor;
+  }
+  
+  .formActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  
+  .successMessage, .infoMessage, .warningMessage, .errorMessage {
+    border: 2px solid;
+    padding: 1.25rem;
+    position: relative;
+    margin-bottom: 1.5rem;
+    font-family: 'Indie Flower', cursive, sans-serif;
+  }
+  
+  .successMessage {
+    border-color: rgb(21, 128, 61);
+    color: rgb(21, 128, 61);
+    background-color: rgba(34, 197, 94, 0.1);
+  }
+  
+  .infoMessage {
+    border-color: rgb(29, 78, 216);
+    color: rgb(29, 78, 216);
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+  
+  .warningMessage {
+    border-color: rgb(161, 98, 7);
+    color: rgb(161, 98, 7);
+    background-color: rgba(234, 179, 8, 0.1);
+  }
+  
+  .errorMessage {
+    border-color: rgb(185, 28, 28);
+    color: rgb(185, 28, 28);
+    background-color: rgba(239, 68, 68, 0.1);
+  }
+  
+  .errorText {
+    color: rgb(185, 28, 28);
+    margin-bottom: 1rem;
+    font-family: 'Indie Flower', cursive, sans-serif;
+  }
+  
+  .poemNavigation {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1rem;
+    opacity: 0.7;
+  }
+  
+  /* Paper-like styles for poems */
+  .currentPoem,
+  .poemCard {
+    background-color: #f9f9f7;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 2px;
+    position: relative;
+    overflow: visible;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Add slight rotation for a more natural paper look */
+  .currentPoem {
+    transform: rotate(0.3deg);
+  }
+  
+  .poemCard {
+    transform: rotate(var(--rotation, 0.5deg));
+  }
+  
+  .poemCard:nth-child(2n) {
+    --rotation: -0.3deg;
+  }
+  
+  .poemCard:nth-child(3n) {
+    --rotation: 0.2deg;
+  }
+
+  /* Red margin line on the left */
+.currentPoem::before,
+.poemCardContent::before {
+  content: '';
+  position: absolute;
+  left: 1.2rem;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: rgba(231, 76, 60, 0.5);
+  z-index: 1;
+}
+
+/* Lined paper background */
+.poemLines {
+  position: relative;
+  padding: 0.5rem 0 1rem 1.8rem;
+  background: none;
+}
+
+/* Create the horizontal ruled lines */
+.poemLines::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 1.8rem,
+    rgba(0, 0, 0, 0.1) 1.8rem,
+    rgba(0, 0, 0, 0.1) 1.9rem
+  );
+  background-position: 0 0.9rem; /* Position lines to match text baseline */
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Style for individual lines */
+.poemLine {
+  position: relative;
+  height: 1.9rem; /* Fixed height to match ruled lines exactly */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+/* Style for empty lines */
+.emptyLine {
+  height: 1.9rem;
+}
+
+.lineContent {
+  margin: 0;
+  padding: 0;
+  line-height: 1.9rem; /* Exact line height to match ruled lines */
+  font-family: 'Indie Flower', cursive, sans-serif;
+  flex: 1;
+  display: flex;
+  align-items: baseline;
+}
+
+.lineAuthor {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  font-style: italic;
+  text-align: right;
+  flex-shrink: 0;
+  padding-right: 0.5rem;
+  line-height: 1.9rem;
+}
+
+.lineNumber {
+  font-family: 'Indie Flower', cursive, sans-serif;
+  color: rgba(0, 0, 0, 0.5);
+  margin-right: 0.5rem;
+  display: inline-block;
+  width: 1.5rem;
+  text-align: right;
+  line-height: 1.9rem; /* Match to the ruled line height */
+}
+
+/* Style for the next line to be filled in */
+.nextLine {
+  background-color: rgba(255, 255, 0, 0.05);
+  position: relative;
+}
+
+.nextLine::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: repeating-linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.2) 0,
+    rgba(0, 0, 0, 0.2) 5px,
+    transparent 5px,
+    transparent 10px
+  );
+}
+
+.linePrompt {
+  color: rgba(0, 0, 0, 0.4);
+  font-style: italic;
+}
+
+/* Paper title styling */
+.currentPoemTitle,
+.poemCardTitle {
+  font-family: 'Indie Flower', cursive, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border-bottom: 2px double rgba(0, 0, 0, 0.2);
+  padding-bottom: 0.5rem;
+}
+
+/* Paper edge styling */
+.currentPoem,
+.poemCard {
+  position: relative;
+}
+
+/* Add torn paper bottom edge */
+.poemLines::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 10px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C5,3.5 10,7 15,5.5 C20,4 25,2 30,3.5 C35,5 40,8 45,7 C50,6 55,3 60,4.5 C65,6 70,9 75,7.5 C80,6 85,4 90,5 C95,6 100,8 100,10 L0,10 Z' fill='%23f9f9f7'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  z-index: 2;
+}
+
+/* Hole punch effect */
+.currentPoem::after,
+.poemCard::after {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  top: 2rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+  z-index: 3;
+}
+
+.currentPoem::before,
+.poemCard::before {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  top: 4rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+  z-index: 3;
+}
+
+/* Paper texture overlay */
+.currentPoem,
+.poemCard {
+  position: relative;
+}
+
+.currentPoem::after,
+.poemCard::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0.3 0 0 0 0 0 0.3 0 0 0 0 0 0.3 0 0 0 0 0 0.15 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Paper fold effect in the corner */
+.poemCard::before,
+.currentPoem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: linear-gradient(135deg, transparent 45%, rgba(0, 0, 0, 0.1) 50%, transparent 55%);
+  z-index: 2;
+}
+
+/* Handle multi-line content */
+.poemLine.multiline {
+  height: auto;
+  min-height: 1.9rem;
+}
+
+.lineContent > span:not(.lineNumber) {
+  display: inline-block;
+  max-width: calc(100% - 2rem);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  line-height: 1.9rem;
+  vertical-align: baseline;
+}
+
+/* Adjust form spacing */
+.addLineForm {
+  margin-top: 1.9rem; /* Match the line height */
+}
+
+.currentPoemAuthor {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-bottom: 1.5rem;
+}
+
+.poemCardHeader {
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.poemCardHeader:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.poemCardTitle {
+  font-family: 'Indie Flower', cursive, sans-serif;
+  font-size: 1.3rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.poemCardAuthor {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-bottom: 0;
+}
+
+.poemCardToggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  font-family: 'Indie Flower', cursive, sans-serif;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.toggleIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.2s ease;
+}
+
+.toggleIcon.expanded {
+  transform: rotate(180deg);
+}
+
+.poemCardContent {
+  padding: 0 1.25rem 1.25rem;
+  border-top: 1px dashed rgba(0, 0, 0, 0.1);
+  background: none; /* Remove previous background */
+  position: relative;
+  padding-left: 2rem;
+}
+
+.playersSection {
+  margin-top: 3rem;
+}
+
+.playersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.playerCard {
+  padding: 0.75rem 1rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 0.25rem;
+  font-family: 'Indie Flower', cursive, sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transform: rotate(var(--rotation, 0.3deg));
+}
+
+.playerCard:nth-child(2n) {
+    --rotation: -0.2deg;
+  }
+  
+  .playerCard:nth-child(3n) {
+    --rotation: 0.1deg;
+  }
+  
+  .playerCard:nth-child(4n) {
+    --rotation: -0.3deg;
+  }
+  
+  .exhibitDescription {
+    margin-bottom: 2rem;
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1.1rem;
+  }
+  
+  .loadingContainer, 
+  .errorContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1.5rem;
+  }
+  
+  .errorContainer {
+    color: rgb(185, 28, 28);
+  }
+  
+  .loadingMessage, 
+  .emptyMessage {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1.1rem;
+    opacity: 0.7;
+  }
+  
+  .poemsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  /* Dark mode styles */
+  :global(.dark) .phaseExplanation,
+  :global(.dark) .poemForm,
+  :global(.dark) .addLineForm,
+  :global(.dark) .currentPoem,
+  :global(.dark) .poemCard {
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  :global(.dark) .phaseExplanation::before,
+  :global(.dark) .poemForm::before,
+  :global(.dark) .addLineForm::before,
+  :global(.dark) .currentPoem::before,
+  :global(.dark) .poemCard::before {
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  :global(.dark) .poemLines {
+    background-image: 
+      linear-gradient(transparent 0%, transparent calc(1.4rem - 1px), rgba(255, 255, 255, 0.15) calc(1.4rem - 1px), rgba(255, 255, 255, 0.15) calc(1.4rem), transparent calc(1.4rem));
+  }
+  
+  :global(.dark) .poemLine::after {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+  
+  :global(.dark) .currentPoem,
+  :global(.dark) .poemCard {
+    background-color: #1e1e1e;
+  }
+  
+  :global(.dark) .poemCardHeader:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  :global(.dark) .lineNumber {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  :global(.dark) .poemLine::after {
+    background-color: rgba(255, 255, 255, 0.07);
+    background-image: linear-gradient(to right, 
+      rgba(255, 255, 255, 0.05) 0%, 
+      rgba(255, 255, 255, 0.1) 20%,
+      rgba(255, 255, 255, 0.05) 40%,
+      rgba(255, 255, 255, 0.1) 60%,
+      rgba(255, 255, 255, 0.05) 80%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+  }
+  
+  :global(.dark) .poemCardToggle {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  :global(.dark) .poemCardContent {
+    border-top-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  :global(.dark) .playerCard {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  :global(.dark) .formInput, 
+  :global(.dark) .formTextarea {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 1.8rem,
+      rgba(255, 255, 255, 0.15) 1.8rem,
+      rgba(255, 255, 255, 0.15) 1.9rem
+    );
+  }
+  
+  :global(.dark) .nextLine {
+    background-color: rgba(255, 255, 0, 0.03);
+  }
+  
+  :global(.dark) .nextLine::after {
+    background: repeating-linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.2) 0,
+      rgba(255, 255, 255, 0.2) 5px,
+      transparent 5px,
+      transparent 10px
+    );
+  }
+  
+  :global(.dark) .linePrompt {
+    color: rgba(255, 255, 255, 0.4);
+  }
+  
+  :global(.dark) .poemLines::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C5,3.5 10,7 15,5.5 C20,4 25,2 30,3.5 C35,5 40,8 45,7 C50,6 55,3 60,4.5 C65,6 70,9 75,7.5 C80,6 85,4 90,5 C95,6 100,8 100,10 L0,10 Z' fill='%231e1e1e'/%3E%3C/svg%3E");
+  }
+  
+  :global(.dark) .currentPoem::before,
+  :global(.dark) .poemCard::before,
+  :global(.dark) .currentPoem::after,
+  :global(.dark) .poemCard::after {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
+  }
+  
+  :global(.dark) .currentPoem::before,
+  :global(.dark) .poemCardContent::before {
+    background-color: rgba(231, 76, 60, 0.4);
+  }
+  
+  :global(.dark) .poemLines::before {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 1.8rem,
+      rgba(255, 255, 255, 0.15) 1.8rem,
+      rgba(255, 255, 255, 0.15) 1.9rem
+    );
+    background-position: 0 0.9rem;
+  }
+  
+  /* Fix conflicts in before/after pseudoelements */
+  .currentPoem,
+  .poemCard {
+    position: relative;
+  }
+  
+  /* Red vertical margin line */
+  .poemLines::before,
+  .poemCardContent .poemLines::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 1.8rem,
+      rgba(0, 0, 0, 0.1) 1.8rem,
+      rgba(0, 0, 0, 0.1) 1.9rem
+    );
+    background-position: 0 0.9rem;
+    z-index: 0;
+  }
+  
+  .redMarginLine {
+    position: absolute;
+    left: 1.2rem;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: rgba(231, 76, 60, 0.5);
+    z-index: 1;
+  }
+  
+  .topHolePunch {
+    position: absolute;
+    left: 0.5rem;
+    top: 2rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+    z-index: 3;
+  }
+  
+  .bottomHolePunch {
+    position: absolute;
+    left: 0.5rem;
+    top: 4rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+    z-index: 3;
+  }
+  
+  .cornerFold {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: linear-gradient(135deg, transparent 45%, rgba(0, 0, 0, 0.1) 50%, transparent 55%);
+    z-index: 2;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .title {
+      font-size: 2rem;
+    }
+    
+    .formActions {
+      flex-direction: column;
+    }
+    
+    .formActions button {
+      width: 100%;
+    }
+    
+    .poemsGrid {
+      grid-template-columns: 1fr;
+    }
+  }

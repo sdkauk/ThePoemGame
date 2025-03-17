@@ -1,0 +1,77 @@
+/* Header.module.css */
+.header {
+    position: relative;
+  }
+  
+  .title {
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 5rem;
+    letter-spacing: 0.05em;
+    color: #333;
+    position: relative;
+    transform: rotate(-1deg);
+  }
+  
+  .titleText {
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    z-index: 1;
+  }
+  
+  /* Removed the hand-drawn border effect (.title::after) */
+  
+  /* Pencil underline effect - keeping this */
+  .title::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -0.5rem;
+    width: 80%;
+    height: 3px;
+    background-color: #555;
+    opacity: 0.7;
+    transform: translateX(-50%);
+    
+    /* Make the underline look hand-drawn */
+    clip-path: polygon(
+      0% 100%, 5% 0%, 15% 100%, 25% 30%, 
+      35% 100%, 45% 30%, 55% 100%, 65% 30%, 
+      75% 100%, 85% 30%, 95% 100%, 100% 0%
+    );
+  }
+  
+  /* Dark mode styles */
+  :global(.dark) .title {
+    color: #f0f0f0;
+  }
+  
+  :global(.dark) .titleText {
+    background-color: transparent; /* Removed background color */
+  }
+  
+  /* Removed the texture background for dark mode (.titleText::before) */
+  
+  /* Removed the border color for dark mode (.title::after) */
+  
+  :global(.dark) .title::before {
+    background-color: #ccc;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .title {
+      font-size: 4rem;
+      margin: 3rem 0;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .title {
+      font-size: 3rem;
+      margin: 2rem 0;
+    }
+  }

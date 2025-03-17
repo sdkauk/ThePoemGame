@@ -1,0 +1,491 @@
+/* GroupDetail.module.css */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+  
+  .navigation {
+    margin-bottom: 2rem;
+  }
+  
+  .backLink {
+    font-family: 'Indie Flower', cursive, sans-serif;
+    color: inherit;
+    text-decoration: none;
+    position: relative;
+    padding-left: 1.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .backLink:hover {
+    text-decoration: underline;
+  }
+  
+  .backLink::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 1rem;
+    height: 0.8rem;
+    background-color: currentColor;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12H5M12 19l-7-7 7-7'/%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    transform: translateY(-50%);
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .title {
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 2.8rem;
+    font-weight: 600;
+    position: relative;
+    margin: 0;
+    transform: rotate(-0.5deg);
+  }
+  
+  .title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -5px;
+    height: 2px;
+    background-color: currentColor;
+    opacity: 0.6;
+    clip-path: polygon(
+      0% 100%, 5% 0%, 15% 100%, 25% 30%, 
+      35% 100%, 45% 30%, 55% 100%, 65% 30%, 
+      75% 100%, 85% 30%, 95% 100%, 100% 0%
+    );
+  }
+  
+  .twoColumns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .infoCard {
+    border: 2px solid currentColor;
+    padding: 1.5rem;
+    background-color: transparent;
+    position: relative;
+    transform: rotate(0.3deg);
+  }
+  
+  .infoCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid currentColor;
+    z-index: -1;
+    transform: translate(3px, 3px);
+    clip-path: polygon(
+      2% 2%, 98% 1%, 99% 3%, 
+      97% 97%, 98% 99%, 3% 98%, 
+      1% 96%
+    );
+  }
+  
+  .cardTitle {
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1.6rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .membersList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .memberItem {
+    padding: 0.75rem 0;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1.1rem;
+  }
+  
+  .memberItem:last-child {
+    border-bottom: none;
+  }
+  
+  .inviteText {
+    margin-bottom: 1rem;
+  }
+  
+  .inviteCodeContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .inviteCode {
+    padding: 0.75rem;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 0.25rem;
+    font-family: monospace;
+    font-size: 1rem;
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .inviteCode::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.07' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 5v1H0V0h5z'/%3E%3C/g%3E%3C/svg%3E");
+    z-index: -1;
+  }
+  
+  .gamesSection {
+    margin-top: 2rem;
+  }
+  
+  .gamesSectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .sectionTitle {
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 2rem;
+    margin: 0;
+    transform: rotate(-0.5deg);
+  }
+  
+  .gamesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .gameCard {
+    border: 2px solid currentColor;
+    position: relative;
+    transform: rotate(var(--rotation, 0.5deg));
+    background-color: transparent;
+    transition: transform 0.2s ease;
+  }
+  
+  .gameCard:nth-child(2n) {
+    --rotation: -0.3deg;
+  }
+  
+  .gameCard:nth-child(3n) {
+    --rotation: 0.2deg;
+  }
+  
+  .gameCard:hover {
+    transform: translateY(-5px) rotate(var(--rotation, 0.5deg));
+  }
+  
+  .gameCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid currentColor;
+    z-index: -1;
+    transform: translate(3px, 3px);
+    clip-path: polygon(
+      2% 2%, 98% 1%, 99% 3%, 
+      97% 97%, 98% 99%, 3% 98%, 
+      1% 96%
+    );
+  }
+  
+  .gameCardContent {
+    padding: 1.5rem;
+  }
+  
+  .gameTitle {
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .gameInfoGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .gameInfo:last-child {
+    grid-column: 1 / -1;
+  }
+  
+  .infoLabel {
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: block;
+    opacity: 0.7;
+  }
+  
+  .infoValue {
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1.1rem;
+  }
+  
+  .statusBadge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: 'Indie Flower', cursive, sans-serif;
+    position: relative;
+  }
+  
+  .statusWaiting {
+    background-color: rgba(234, 179, 8, 0.2);
+    color: rgb(161, 98, 7);
+  }
+  
+  .statusInProgress {
+    background-color: rgba(34, 197, 94, 0.2);
+    color: rgb(21, 128, 61);
+  }
+  
+  .statusCompleted {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: rgb(29, 78, 216);
+  }
+  
+  .statusCancelled {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: rgb(185, 28, 28);
+  }
+  
+  .playersSection {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .playersTitle {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+  
+  .playersList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .playerTag {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+    font-family: 'Indie Flower', cursive, sans-serif;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 0.25rem;
+  }
+  
+  .gameActions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+  }
+  
+  .actionButtons {
+    display: flex;
+    gap: 0.75rem;
+  }
+  
+  .viewGameLink {
+    color: inherit;
+    text-decoration: none;
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1.1rem;
+    position: relative;
+  }
+  
+  .viewGameLink::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+  
+  .viewGameLink:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  
+  .membershipLoading {
+    font-style: italic;
+    font-size: 0.9rem;
+    opacity: 0.7;
+  }
+  
+  .emptyGamesMessage {
+    text-align: center;
+    padding: 3rem 1rem;
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1.2rem;
+  }
+  
+  .doodle {
+    height: 80px;
+    margin-top: 1.5rem;
+    background-image: url("data:image/svg+xml,%3Csvg width='200' height='80' viewBox='0 0 200 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 40 C 40 10, 65 10, 80 40 S 120 70, 160 40 M 160 40 C 170 20, 180 60, 190 40' stroke='%23333' fill='transparent' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.6;
+  }
+  
+  .loadingContainer, 
+  .errorContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1.5rem;
+  }
+  
+  .errorContainer {
+    color: #a02020;
+  }
+  
+  .errorMessage {
+    padding: 1rem;
+    background-color: rgba(220, 38, 38, 0.1);
+    color: #a02020;
+    border-radius: 0.25rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Indie Flower', cursive, sans-serif;
+  }
+  
+  .loadingText, .errorText {
+    text-align: center;
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1.2rem;
+    margin: 2rem 0;
+  }
+  
+  .errorText {
+    color: #a02020;
+  }
+  
+  .emptyMessage {
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1.1rem;
+    text-align: center;
+    margin: 2rem 0;
+  }
+  
+  /* Dark mode styles */
+  :global(.dark) .infoCard,
+  :global(.dark) .gameCard {
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  :global(.dark) .infoCard::before,
+  :global(.dark) .gameCard::before {
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+  
+  :global(.dark) .inviteCode {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  :global(.dark) .inviteCode::before {
+    background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 5v1H0V0h5z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  
+  :global(.dark) .playerTag {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  :global(.dark) .memberItem {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  :global(.dark) .statusWaiting {
+    background-color: rgba(234, 179, 8, 0.1);
+    color: rgb(253, 224, 71);
+  }
+  
+  :global(.dark) .statusInProgress {
+    background-color: rgba(34, 197, 94, 0.1);
+    color: rgb(74, 222, 128);
+  }
+  
+  :global(.dark) .statusCompleted {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: rgb(96, 165, 250);
+  }
+  
+  :global(.dark) .statusCancelled {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: rgb(252, 165, 165);
+  }
+  
+  :global(.dark) .doodle {
+    filter: invert(0.8);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .title {
+      font-size: 2.2rem;
+    }
+    
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .gameActions {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    
+    .actionButtons {
+      width: 100%;
+    }
+    
+    .actionButtons button {
+      width: 100%;
+    }
+  }

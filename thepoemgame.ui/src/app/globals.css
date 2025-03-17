@@ -3,6 +3,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --gradient-top: #ffffff;
+  --gradient-middle: #f2f2f2;
+  --gradient-lower: #e0e0e0;
+  --gradient-bottom: #d6d6d6;
 }
 
 @theme inline {
@@ -12,15 +16,31 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --gradient-top: #272727;
+    --gradient-middle: #222222;
+    --gradient-lower: #151515;
+    --gradient-bottom: #000000;
   }
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  
+  /* Stark gradient background */
+  background: linear-gradient(
+    to bottom,
+    var(--gradient-top) 0%,
+    var(--gradient-middle) 33%,
+    var(--gradient-lower) 66%,
+    var(--gradient-bottom) 100%
+  );
+  
+  /* Make the gradient fill the entire viewport height */
+  background-attachment: fixed;
+  min-height: 100vh;
 }
