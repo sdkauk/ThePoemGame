@@ -31,6 +31,9 @@ export default function Home() {
             <Button onClick={() => login()}>
               Log In
             </Button>
+            <Button onClick={() => login()}>
+              Sign up
+            </Button>
           </div>
         )}
       </div>

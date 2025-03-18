@@ -1,0 +1,296 @@
+/* PoemCard.module.css */
+.poemCard {
+    background-color: #f9f9f7;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 2px;
+    position: relative;
+    overflow: visible;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transform: rotate(var(--rotation, 0.5deg));
+  }
+  
+  .poemCard:nth-child(2n) {
+    --rotation: -0.3deg;
+  }
+  
+  .poemCard:nth-child(3n) {
+    --rotation: 0.2deg;
+  }
+  
+  .poemCardHeader {
+    padding: 1.25rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .poemCardHeader:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+  
+  .poemCardTitle {
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1.3rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+  
+  .poemCardAuthor {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-bottom: 0;
+  }
+  
+  .poemCardToggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .toggleIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: transform 0.2s ease;
+  }
+  
+  .toggleIcon.expanded {
+    transform: rotate(180deg);
+  }
+  
+  .poemCardContent {
+    padding: 0 1.25rem 1.25rem;
+    border-top: 1px dashed rgba(0, 0, 0, 0.1);
+    background: none;
+    position: relative;
+    padding-left: 2rem;
+  }
+  
+  /* Red margin line on the left */
+  .poemCardContent::before {
+    content: '';
+    position: absolute;
+    left: 1.2rem;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: rgba(231, 76, 60, 0.5);
+    z-index: 1;
+  }
+  
+  /* Paper decorations */
+  .cornerFold {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: linear-gradient(135deg, transparent 45%, rgba(0, 0, 0, 0.1) 50%, transparent 55%);
+    z-index: 2;
+  }
+  
+  /* Paper texture overlay */
+  .poemCard::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0.3 0 0 0 0 0 0.3 0 0 0 0 0 0.3 0 0 0 0 0 0.15 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  /* Paper fold effect in the corner */
+  .poemCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: linear-gradient(135deg, transparent 45%, rgba(0, 0, 0, 0.1) 50%, transparent 55%);
+    z-index: 2;
+  }
+  
+  /* Hole punch effect */
+  .topHolePunch {
+    position: absolute;
+    left: 0.5rem;
+    top: 2rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+    z-index: 3;
+  }
+  
+  .bottomHolePunch {
+    position: absolute;
+    left: 0.5rem;
+    top: 4rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+    z-index: 3;
+  }
+  
+  /* Lined paper styling */
+  .poemLines {
+    position: relative;
+    padding: 0.5rem 0 1rem 1.8rem;
+    background: none;
+  }
+  
+  /* Create the horizontal ruled lines */
+  .poemLines::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 1.8rem,
+      rgba(0, 0, 0, 0.1) 1.8rem,
+      rgba(0, 0, 0, 0.1) 1.9rem
+    );
+    background-position: 0 0.9rem; /* Position lines to match text baseline */
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  /* Paper torn edge */
+  .poemLines::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C5,3.5 10,7 15,5.5 C20,4 25,2 30,3.5 C35,5 40,8 45,7 C50,6 55,3 60,4.5 C65,6 70,9 75,7.5 C80,6 85,4 90,5 C95,6 100,8 100,10 L0,10 Z' fill='%23f9f9f7'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    z-index: 2;
+  }
+  
+  /* Individual poem lines */
+  .poemLine {
+    position: relative;
+    height: 1.9rem; /* Fixed height to match ruled lines exactly */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    z-index: 1;
+    box-sizing: border-box;
+  }
+  
+  .emptyLine {
+    height: 1.9rem;
+  }
+  
+  .lineContent {
+    margin: 0;
+    padding: 0;
+    line-height: 1.9rem; /* Exact line height to match ruled lines */
+    font-family: 'Indie Flower', cursive, sans-serif;
+    flex: 1;
+    display: flex;
+    align-items: baseline;
+  }
+  
+  .lineAuthor {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    font-style: italic;
+    text-align: right;
+    flex-shrink: 0;
+    padding-right: 0.5rem;
+    line-height: 1.9rem;
+  }
+  
+  .lineNumber {
+    font-family: 'Indie Flower', cursive, sans-serif;
+    color: rgba(0, 0, 0, 0.5);
+    margin-right: 0.5rem;
+    display: inline-block;
+    width: 1.5rem;
+    text-align: right;
+    line-height: 1.9rem; /* Match to the ruled line height */
+  }
+  
+  /* Multi-line content handling */
+  .poemLine.multiline {
+    height: auto;
+    min-height: 1.9rem;
+  }
+  
+  .lineContent > span:not(.lineNumber) {
+    display: inline-block;
+    max-width: calc(100% - 2rem);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    line-height: 1.9rem;
+    vertical-align: baseline;
+  }
+  
+  /* Message styles */
+  .loadingMessage, .errorMessage, .emptyMessage {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1.1rem;
+    opacity: 0.7;
+  }
+  
+  /* Dark mode overrides */
+  :global(.dark) .poemCard {
+    background-color: #1e1e1e;
+  }
+  
+  :global(.dark) .poemCardHeader:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  :global(.dark) .poemCardToggle {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  :global(.dark) .poemCardContent {
+    border-top-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  :global(.dark) .lineNumber {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  :global(.dark) .poemLines::before {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 1.8rem,
+      rgba(255, 255, 255, 0.15) 1.8rem,
+      rgba(255, 255, 255, 0.15) 1.9rem
+    );
+    background-position: 0 0.9rem;
+  }
+  
+  :global(.dark) .poemLines::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C5,3.5 10,7 15,5.5 C20,4 25,2 30,3.5 C35,5 40,8 45,7 C50,6 55,3 60,4.5 C65,6 70,9 75,7.5 C80,6 85,4 90,5 C95,6 100,8 100,10 L0,10 Z' fill='%231e1e1e'/%3E%3C/svg%3E");
+  }
+  
+  :global(.dark) .poemCardContent::before {
+    background-color: rgba(231, 76, 60, 0.4);
+  }

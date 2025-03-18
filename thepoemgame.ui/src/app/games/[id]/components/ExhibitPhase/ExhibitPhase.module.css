@@ -1,0 +1,42 @@
+/* ExhibitPhase.module.css */
+.phaseSection {
+    margin-bottom: 3rem;
+  }
+  
+  .sectionTitle {
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    transform: rotate(-0.3deg);
+  }
+  
+  .exhibitDescription {
+    margin-bottom: 2rem;
+    font-family: 'Indie Flower', cursive, sans-serif;
+    font-size: 1.1rem;
+  }
+  
+  .poemsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  .warningMessage {
+    border: 2px solid;
+    padding: 1.25rem;
+    position: relative;
+    margin-bottom: 1.5rem;
+    font-family: 'Indie Flower', cursive, sans-serif;
+    border-color: rgb(161, 98, 7);
+    color: rgb(161, 98, 7);
+    background-color: rgba(234, 179, 8, 0.1);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .poemsGrid {
+      grid-template-columns: 1fr;
+    }
+  }
