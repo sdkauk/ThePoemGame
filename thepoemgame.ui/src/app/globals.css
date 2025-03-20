@@ -1,46 +1,52 @@
-@import "tailwindcss";
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --gradient-top: #ffffff;
-  --gradient-middle: #f2f2f2;
-  --gradient-lower: #e0e0e0;
-  --gradient-bottom: #d6d6d6;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --gradient-top: #272727;
-    --gradient-middle: #222222;
-    --gradient-lower: #151515;
-    --gradient-bottom: #000000;
+    /* Primary Colors */
+    --color-primary: #9333ea; /* purple-600 */
+    --color-primary-dark: #7e22ce; /* purple-700 */
+    --color-primary-light: #f3e8ff; /* purple-100 */
+    --color-primary-text: #6b21a8; /* purple-800 */
+    
+    /* Blue Colors */
+    --color-blue-50: #eff6ff;
+    --color-blue-100: #dbeafe;
+    --color-blue-600: #2563eb;
+    --color-blue-700: #1d4ed8;
+    --color-blue-800: #1e40af;
+    
+    /* Gray Colors */
+    --color-gray-50: #f9fafb;
+    --color-gray-100: #f3f4f6;
+    --color-gray-200: #e5e7eb;
+    --color-gray-300: #d1d5db;
+    --color-gray-500: #6b7280;
+    --color-gray-600: #4b5563;
+    --color-gray-700: #374151;
+    --color-gray-800: #1f2937;
+    
+    /* Border Radius */
+    --border-radius-sm: 0.25rem;
+    --border-radius-md: 0.375rem;
+    --border-radius-lg: 0.5rem;
+    --border-radius-xl: 0.75rem;
+    --border-radius-full: 9999px;
+    
+    /* Spacing */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    
+    /* Font Sizes */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    
+    /* Box Shadow */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
-}
-
-body {
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-  
-  /* Stark gradient background */
-  background: linear-gradient(
-    to bottom,
-    var(--gradient-top) 0%,
-    var(--gradient-middle) 33%,
-    var(--gradient-lower) 66%,
-    var(--gradient-bottom) 100%
-  );
-  
-  /* Make the gradient fill the entire viewport height */
-  background-attachment: fixed;
-  min-height: 100vh;
-}

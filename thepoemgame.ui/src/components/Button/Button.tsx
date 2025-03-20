@@ -1,24 +1,26 @@
-'use client';
-
 import React, { ButtonHTMLAttributes } from 'react';
-import styles from './Button.module.css';
+import styles from './button.module.css';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
-  className?: string;
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary' | 'secondary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
 }
 
-export default function Button({ 
-  children, 
-  className = '', 
-  ...props 
-}: ButtonProps) {
+const Button: React.FC<ButtonProps> = ({
+  children,
+  className,
+  variant = 'primary',
+  size = 'md',
+  ...props
+}) => {
   return (
-    <button 
-      className={`${styles.button} ${className}`}
+    <button
+      className={`${styles.button} ${styles[variant]} ${styles[size]} ${className || ''}`}
       {...props}
     >
       {children}
     </button>
   );
-}
+};
+
+export default Button;

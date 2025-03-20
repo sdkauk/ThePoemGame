@@ -1,0 +1,25 @@
+/* components/Card/Card.module.css */
+.card {
+    border: 2px solid currentColor;
+    position: relative;
+    background-color: transparent;
+    transition: transform 0.2s ease;
+    overflow: hidden;
+  }
+  
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid currentColor;
+    z-index: -1;
+    transform: translate(3px, 3px);
+    clip-path: polygon(
+      2% 2%, 98% 1%, 99% 3%, 
+      97% 97%, 98% 99%, 3% 98%, 
+      1% 96%
+    );
+  }

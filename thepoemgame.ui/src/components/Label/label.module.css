@@ -1,0 +1,18 @@
+.label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-gray-700);
+  margin-bottom: var(--space-1);
+}
+
+.inline {
+  display: inline-flex;
+  align-items: center;
+  margin-right: var(--space-2);
+}
+
+.required {
+  color: #e53e3e;
+  margin-left: var(--space-1);
+}
