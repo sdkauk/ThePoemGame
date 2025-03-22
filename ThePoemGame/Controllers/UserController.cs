@@ -21,6 +21,13 @@ public class UsersController : ControllerBase
         this.groupService = groupService;
     }
 
+    [HttpGet]
+    public async Task<IActionResult> GetUser(string objectId)
+    {
+        var user = await userService.GetCurrentUserAsync(objectId);
+        return Ok(user);
+    }
+
     [HttpPost("group/join")]
     public async Task<IActionResult> JoinGroup(string inviteCode)
     {

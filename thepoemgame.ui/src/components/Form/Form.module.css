@@ -1,0 +1,34 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* Spacing between form items */
+.spacing-sm > * + * {
+  margin-top: var(--space-2);
+}
+
+.spacing-md > * + * {
+  margin-top: var(--space-4);
+}
+
+.spacing-lg > * + * {
+  margin-top: var(--space-6);
+}
+
+/* Form layout classes */
+.formRow {
+  display: flex;
+  flex-wrap: wrap;
+  margin: calc(var(--space-2) * -1);
+}
+
+.formRow > * {
+  flex: 1 0 0%;
+  margin: var(--space-2);
+  min-width: 0;
+}

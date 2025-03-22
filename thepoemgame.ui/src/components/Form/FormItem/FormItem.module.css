@@ -1,0 +1,33 @@
+.formItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-gray-700);
+  margin-bottom: var(--space-1);
+}
+
+.required {
+  color: #e53e3e;
+  margin-left: var(--space-1);
+}
+
+.control {
+  margin-top: var(--space-1);
+}
+
+.helpText {
+  margin-top: var(--space-1);
+  font-size: var(--font-size-xs);
+  color: var(--color-gray-600);
+}
+
+.error {
+  margin-top: var(--space-1);
+  font-size: var(--font-size-xs);
+  color: #e53e3e;
+}
