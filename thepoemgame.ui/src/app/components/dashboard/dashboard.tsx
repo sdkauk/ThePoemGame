@@ -22,15 +22,18 @@ export default function Dashboard({ user, onLogout }: DashboardProps) {
   return (
     <div>
       <header>
-        <Container>
-          <Grid cols={12} gap="md">
-            <Column span={12} md={6} lg={4}>
+        <Container maxWidth="xl">
+          <div className="flex flex-col md:flex-row gap-8">
+            {/* Sidebar */}
+            <div className="w-full md:w-64 flex-shrink-0">
               <GroupsSection />
-            </Column>
-            <Column span={12} md={12} lg={6}>
+            </div>
+
+            {/* Main Content */}
+            <div className="flex-1">
               <PoemsSection />
-            </Column>
-          </Grid>
+            </div>
+          </div>
         </Container>
       </header>
     </div>

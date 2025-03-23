@@ -1,13 +1,32 @@
 .poemCard {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--border-radius-md);
+  background-color: white;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.poemCard:hover {
+  background-color: var(--color-gray-50);
+}
+
+.poemCardActive {
+  border-color: var(--color-blue-200);
+  background-color: var(--color-blue-50);
+}
+
+.poemCardActive:hover {
+  background-color: var(--color-blue-100);
 }
 
 .poemHeader {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  margin-bottom: var(--space-2);
 }
 
 .poemTitle {
@@ -17,45 +36,70 @@
   margin: 0;
 }
 
-.poemDate {
-  font-size: var(--font-size-sm);
-  color: var(--color-gray-500);
+.poemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
 }
 
-.poemMeta {
+.poemDetails {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.poemDetail {
   font-size: var(--font-size-sm);
   color: var(--color-gray-600);
 }
 
-.poemAuthor {
-  font-style: italic;
-}
-
-.lastLine {
-  padding: var(--space-3);
-  background-color: var(--color-gray-50);
-  border-radius: var(--border-radius-md);
-  border-left: 3px solid var(--color-primary);
-}
-
-.lineContent {
-  font-size: var(--font-size-base);
-  font-style: italic;
-  margin: 0 0 var(--space-2) 0;
-}
-
-.lineAuthor {
-  display: block;
-  text-align: right;
-  font-size: var(--font-size-sm);
-  color: var(--color-gray-600);
-}
-
-.actions {
+.poemTags {
   display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.poemTag {
+  padding: calc(var(--space-1) / 2) var(--space-2);
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-800);
+  border-radius: var(--border-radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+}
+
+.poemTagActive {
+  background-color: var(--color-blue-100);
+  color: var(--color-blue-800);
+}
+
+.poemActions {
+  display: flex;
+  justify-content: flex-end;
   gap: var(--space-2);
   margin-top: var(--space-2);
+}
+
+.timestamp {
+  font-size: var(--font-size-xs);
+  color: var(--color-gray-500);
+  text-align: right;
+}
+
+@media (min-width: 48rem) {
+  .poemCard {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .poemInfo {
+    flex: 1;
+  }
+
+  .poemActions {
+    margin-top: 0;
+    align-items: center;
+  }
 }
