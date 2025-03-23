@@ -44,6 +44,16 @@ public class GamesController : ControllerBase
         return Ok(games);
     }
 
+    [HttpGet]
+    [Route("user/groups")]
+    public async Task<IActionResult> GetGamesForUserGroups()
+    {
+        string userObjectId = claimsService.GetObjectId(User);
+        var games = await gameService.GetGamesForUserGroupsAsync(userObjectId);
+        return Ok(games);
+    }
+
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetGame(Guid id)
     {

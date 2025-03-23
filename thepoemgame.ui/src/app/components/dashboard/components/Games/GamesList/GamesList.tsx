@@ -7,12 +7,14 @@ import Grid from "@/components/Grid/grid";
 interface GamesListProps {
   games: Game[];
   onGameJoined?: () => void;
+  onGameLeft?: () => void;
   currentUserId?: string;
 }
 
 const GamesList: React.FC<GamesListProps> = ({
   games,
   onGameJoined,
+  onGameLeft,
   currentUserId,
 }) => {
   return (
@@ -23,6 +25,7 @@ const GamesList: React.FC<GamesListProps> = ({
             key={game.id}
             game={game}
             onGameJoined={onGameJoined}
+            onGameLeft={onGameLeft}
             currentUserId={currentUserId}
           />
         ))}

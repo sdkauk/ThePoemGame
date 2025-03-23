@@ -36,6 +36,24 @@ namespace ThePoemGame.BusinessLogic.Services.Games
             return await gameRepository.GetGamesByGroupAsync(groupId);
         }
 
+        public async Task<List<Game>> GetGamesForUserGroupsAsync(string userObjectId)
+        {
+            var user = await userRepository.GetUserFromAuthenticationAsync(userObjectId);
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+
+            var groupIds = user.Groups.Select(g => g.Id).ToList();
+
+            if (!groupIds.Any())
+            {
+                return new List<Game>();
+            }
+
+            return await gameRepository.GetGamesByGroupIdsAsync(groupIds);
+        }
+
         public async Task<GameResponse> GetGameAsync(Guid id, string userObjectId)
         {
             var user = await userRepository.GetUserFromAuthenticationAsync(userObjectId);

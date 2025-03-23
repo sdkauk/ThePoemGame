@@ -85,13 +85,6 @@ const CreatePoemsPhase: React.FC<CreatePoemsPhaseProps> = ({
 
   return (
     <div className={styles.createPoemsPhase}>
-      <h2 className={styles.gamePhaseTitle}>Creation Phase</h2>
-
-      <div className={styles.instructions}>
-        <p>Start by creating a poem with a title and first line.</p>
-        <p>Each player creates one poem to begin the game.</p>
-      </div>
-
       <div className={styles.createPoemContainer}>
         <form onSubmit={handleSubmit} className={styles.poemForm}>
           <FormItem

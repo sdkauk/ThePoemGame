@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./GameCard.module.css";
-import { Game, GameStatus, GamePhase } from "@/services/gameService";
+import {
+  Game,
+  GameStatus,
+  GamePhase,
+  gameService,
+} from "@/services/gameService";
 import Card from "@/components/Card/card";
 import Button from "@/components/Button/Button";
 import { userService } from "@/services/userService";
@@ -8,30 +13,82 @@ import { userService } from "@/services/userService";
 interface GameCardProps {
   game: Game;
   onGameJoined?: () => void;
+  onGameLeft?: () => void;
   currentUserId?: string;
 }
 
 const GameCard: React.FC<GameCardProps> = ({
   game,
   onGameJoined,
-  currentUserId,
+  onGameLeft,
 }) => {
-  const isUserInGame = game.players.some(
-    (player) => player.id === currentUserId
-  );
+  const [isUserInGame, setIsUserInGame] = useState<boolean | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const checkGameMembership = async () => {
+      try {
+        setLoading(true);
+        const isInGame = await gameService.isUserInGame(game.id);
+        setIsUserInGame(isInGame);
+      } catch (error) {
+        console.error("Failed to check game membership:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkGameMembership();
+  }, [game.id]);
+
+  // Determine if the user can join based on game status, players count, and membership
   const canJoin =
+    !loading &&
+    !isUserInGame &&
     game.status === GameStatus.WaitingForPlayers &&
-    game.players.length < game.maxPlayers &&
-    !isUserInGame;
+    game.players.length < game.maxPlayers;
+
+  const canLeave =
+    !loading && isUserInGame && game.status === GameStatus.WaitingForPlayers;
+
+  const canStart =
+    !loading &&
+    isUserInGame &&
+    game.status === GameStatus.WaitingForPlayers &&
+    game.players.length >= 2;
 
   const handleJoinGame = async () => {
     try {
       await userService.joinGameById(game.id);
+      setIsUserInGame(true);
       if (onGameJoined) {
         onGameJoined();
       }
     } catch (error) {
       console.error("Failed to join game:", error);
+    }
+  };
+
+  const handleLeaveGame = async () => {
+    try {
+      await userService.leaveGame(game.id);
+      setIsUserInGame(false);
+      if (onGameLeft) {
+        onGameLeft();
+      }
+    } catch (error) {
+      console.error("Failed to leave game:", error);
+    }
+  };
+
+  const handleStartGame = async () => {
+    try {
+      await gameService.startGame(game.id);
+      if (onGameJoined) {
+        onGameJoined();
+      }
+    } catch (error) {
+      console.error("Failed to start game:", error);
     }
   };
 
@@ -109,6 +166,18 @@ const GameCard: React.FC<GameCardProps> = ({
         {canJoin && (
           <Button variant="secondary" size="sm" onClick={handleJoinGame}>
             Join Game
+          </Button>
+        )}
+
+        {canLeave && (
+          <Button variant="outline" size="sm" onClick={handleLeaveGame}>
+            Leave Game
+          </Button>
+        )}
+
+        {canStart && (
+          <Button variant="secondary" size="sm" onClick={handleStartGame}>
+            Start Game
           </Button>
         )}
       </div>

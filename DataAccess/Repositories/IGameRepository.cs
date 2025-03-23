@@ -15,5 +15,6 @@ namespace ThePoemGame.DataAccess.Repositories
         Task<List<Game>> GetGamesByUserAsync(Guid userId);
         Task AddPoemToGame(Guid gameId, BasicPoem poem);
         Task<List<Game>> GetGamesByGroupAsync(Guid groupId);
+        Task<List<Game>> GetGamesByGroupIdsAsync(IEnumerable<Guid> groupIds);
     }
 }

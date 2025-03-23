@@ -6,11 +6,10 @@ import GamesList from "../GamesList/GamesList";
 import CreateGameModal from "../CreateGameModal/CreateGameModal";
 
 interface GamesSectionProps {
-  groupId?: string;
   user?: any;
 }
 
-const GamesSection: React.FC<GamesSectionProps> = ({ groupId, user }) => {
+const GamesSection: React.FC<GamesSectionProps> = ({ user }) => {
   const [games, setGames] = useState<Game[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -19,14 +18,7 @@ const GamesSection: React.FC<GamesSectionProps> = ({ groupId, user }) => {
   const fetchGames = async () => {
     try {
       setLoading(true);
-      let fetchedGames: Game[];
-
-      if (groupId) {
-        fetchedGames = await gameService.getGroupGames(groupId);
-      } else {
-        fetchedGames = await gameService.getUserGames();
-      }
-
+      const fetchedGames = await gameService.getUserGroupGames();
       setGames(fetchedGames);
       setError(null);
     } catch (err) {
@@ -36,10 +28,9 @@ const GamesSection: React.FC<GamesSectionProps> = ({ groupId, user }) => {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     fetchGames();
-  }, [groupId]);
+  }, []);
 
   const handleCreateGame = () => {
     setShowCreateModal(true);
@@ -53,15 +44,18 @@ const GamesSection: React.FC<GamesSectionProps> = ({ groupId, user }) => {
     fetchGames();
   };
 
+  const handleGameLeft = () => {
+    fetchGames();
+  };
+
   return (
     <div className={styles.gamesSection}>
       <div className={styles.header}>
         <h2 className={styles.title}>Games</h2>
-        {groupId && (
-          <Button variant="primary" size="sm" onClick={handleCreateGame}>
-            Create Game
-          </Button>
-        )}
+
+        <Button variant="primary" size="sm" onClick={handleCreateGame}>
+          Create Game
+        </Button>
       </div>
 
       {loading ? (
@@ -71,28 +65,21 @@ const GamesSection: React.FC<GamesSectionProps> = ({ groupId, user }) => {
       ) : games.length === 0 ? (
         <div className={styles.emptyState}>
           <p>No games found.</p>
-          {groupId && (
-            <Button variant="primary" size="md" onClick={handleCreateGame}>
-              Create a Game
-            </Button>
-          )}
         </div>
       ) : (
         <GamesList
           games={games}
           onGameJoined={handleGameJoined}
+          onGameLeft={handleGameLeft}
           currentUserId={user?.id}
         />
       )}
 
-      {groupId && (
-        <CreateGameModal
-          isOpen={showCreateModal}
-          onClose={() => setShowCreateModal(false)}
-          onSuccess={handleGameCreated}
-          groupId={groupId}
-        />
-      )}
+      <CreateGameModal
+        isOpen={showCreateModal}
+        onClose={() => setShowCreateModal(false)}
+        onSuccess={handleGameCreated}
+      />
     </div>
   );
 };

@@ -33,8 +33,8 @@ export default function Dashboard({ user, onLogout }: DashboardProps) {
             {/* Main Content */}
             <div className="flex-1">
               <Grid cols={1} gap="lg">
-                <PoemsSection />
-                <GamesSection groupId={selectedGroupId} user={user} />
+                {/* <PoemsSection /> */}
+                <GamesSection user={user} />
               </Grid>
             </div>
           </div>

@@ -48,6 +48,19 @@ export enum GamePhase {
 }
 
 export const gameService = {
+  getUserGroupGames: async (): Promise<Game[]> => {
+    const response = await authFetch(`${API_BASE_URL}/api/games/user/groups`, {
+      method: "GET",
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch user group games: ${response.statusText}`
+      );
+    }
+
+    return response.json();
+  },
   // Get all games for the current user
   getUserGames: async (): Promise<Game[]> => {
     const response = await authFetch(`${API_BASE_URL}/api/games/user`, {

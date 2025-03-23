@@ -14,5 +14,6 @@ namespace ThePoemGame.BusinessLogic.Services.Games
         Task<Game> StartGameAsync(Guid gameId);
         Task<List<Game>> GetGamesByGroupAsync(Guid groupId);
         Task<bool> IsUserInGameAsync(Guid gameId, string userObjectId);
+        Task<List<Game>> GetGamesForUserGroupsAsync(string userObjectId);
     }
 }
