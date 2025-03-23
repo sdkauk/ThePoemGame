@@ -1,35 +1,34 @@
 import React, { useEffect, useState } from "react";
 import styles from "./poems-section.module.css";
 import Button from "@/components/Button/Button";
-import { Poem, poemService } from "@/services/poemService";
-import PoemsList from "../PoemsList/poems-list";
+import { Poem, poemService, WaitingPoem } from "@/services/poemService";
+import PoemsList from "../PoemsList/PoemsList";
 
 interface PoemsSectionProps {
   userId: string;
 }
 
 const PoemsSection: React.FC<PoemsSectionProps> = ({ userId }) => {
-  const [poems, setPoems] = useState<Poem[]>([]);
+  const [poems, setPoems] = useState<WaitingPoem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchPoems = async () => {
+    const fetchWaitingPoems = async () => {
       try {
         setLoading(true);
-        // This would need to be implemented in the poemService
-        const userPoems = await poemService.getUserPoems();
-        setPoems(userPoems);
+        const poems = await poemService.getUserWaitingPoems();
+        setPoems(poems);
         setError(null);
       } catch (err) {
-        setError("Failed to load poems. Please try again later.");
-        console.error("Error fetching poems:", err);
+        setError("Failed to load waiting poems. Please try again later.");
+        console.error("Error fetching waiting poems:", err);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchPoems();
+    fetchWaitingPoems();
   }, [userId]);
 
   return (
