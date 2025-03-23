@@ -1,14 +1,8 @@
-"use client";
-
-import Button from "@/components/Button/Button";
-import Container from "@/components/Container/container";
 import React, { useState } from "react";
-import GroupList from "./components/Groups/GroupList/GroupList";
+import Container from "@/components/Container/container";
 import GroupsSection from "./components/Groups/GroupsSection/GroupsSection";
-import UserMenu from "@/components/Navbar/UserMenu/UserMenu";
-import NavItem from "@/components/Navbar/NavItem/NavItem";
-import Navbar from "@/components/Navbar/Navbar";
 import PoemsSection from "./components/Poems/PoemsSection/PoemsSection";
+import GamesSection from "./components/Games/GamesSection/GamesSection";
 import Grid from "@/components/Grid/grid";
 import Column from "@/components/Column/column";
 
@@ -18,24 +12,34 @@ interface DashboardProps {
 }
 
 export default function Dashboard({ user, onLogout }: DashboardProps) {
-  const [showCreateGameModal, setShowCreateGameModal] = useState(false);
+  const [selectedGroupId, setSelectedGroupId] = useState<string | undefined>(
+    undefined
+  );
+
+  const handleViewGroup = (groupId: string) => {
+    setSelectedGroupId(groupId);
+  };
+
   return (
     <div>
-      <header>
-        <Container maxWidth="xl">
+      <Container maxWidth="xl" padding>
+        <Grid cols={1} gap="lg">
           <div className="flex flex-col md:flex-row gap-8">
             {/* Sidebar */}
             <div className="w-full md:w-64 flex-shrink-0">
-              <GroupsSection />
+              <GroupsSection onViewGroup={handleViewGroup} />
             </div>
 
             {/* Main Content */}
             <div className="flex-1">
-              <PoemsSection />
+              <Grid cols={1} gap="lg">
+                <PoemsSection />
+                <GamesSection groupId={selectedGroupId} user={user} />
+              </Grid>
             </div>
           </div>
-        </Container>
-      </header>
+        </Grid>
+      </Container>
     </div>
   );
 }
