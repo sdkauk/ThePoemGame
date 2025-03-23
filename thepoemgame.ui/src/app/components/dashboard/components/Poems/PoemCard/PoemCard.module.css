@@ -1,0 +1,61 @@
+.poemCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.poemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.poemTitle {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-gray-800);
+  margin: 0;
+}
+
+.poemDate {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-500);
+}
+
+.poemMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+}
+
+.poemAuthor {
+  font-style: italic;
+}
+
+.lastLine {
+  padding: var(--space-3);
+  background-color: var(--color-gray-50);
+  border-radius: var(--border-radius-md);
+  border-left: 3px solid var(--color-primary);
+}
+
+.lineContent {
+  font-size: var(--font-size-base);
+  font-style: italic;
+  margin: 0 0 var(--space-2) 0;
+}
+
+.lineAuthor {
+  display: block;
+  text-align: right;
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}

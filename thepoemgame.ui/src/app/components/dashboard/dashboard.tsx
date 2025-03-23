@@ -8,6 +8,9 @@ import GroupsSection from "./components/Groups/GroupsSection/GroupsSection";
 import UserMenu from "@/components/Navbar/UserMenu/UserMenu";
 import NavItem from "@/components/Navbar/NavItem/NavItem";
 import Navbar from "@/components/Navbar/Navbar";
+import PoemsSection from "./components/Poems/PoemsSection/PoemsSection";
+import Grid from "@/components/Grid/grid";
+import Column from "@/components/Column/column";
 
 interface DashboardProps {
   user: any;
@@ -20,11 +23,14 @@ export default function Dashboard({ user, onLogout }: DashboardProps) {
     <div>
       <header>
         <Container>
-          <div>
-            <div>
+          <Grid cols={12} gap="md">
+            <Column span={12} md={6} lg={4}>
               <GroupsSection />
-            </div>
-          </div>
+            </Column>
+            <Column span={12} md={12} lg={6}>
+              <PoemsSection />
+            </Column>
+          </Grid>
         </Container>
       </header>
     </div>

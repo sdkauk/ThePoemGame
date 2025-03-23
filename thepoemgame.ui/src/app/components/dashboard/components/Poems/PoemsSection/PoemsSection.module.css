@@ -1,0 +1,46 @@
+.poemsSection {
+  padding: var(--space-4);
+  background-color: white;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+}
+
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-gray-800);
+  margin: 0;
+}
+
+.message {
+  color: var(--color-gray-600);
+  text-align: center;
+  padding: var(--space-4) 0;
+}
+
+.error {
+  color: #e53e3e;
+  text-align: center;
+  padding: var(--space-4) 0;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6) 0;
+  text-align: center;
+  color: var(--color-gray-600);
+}
+
+.emptyState p {
+  margin-bottom: var(--space-4);
+}

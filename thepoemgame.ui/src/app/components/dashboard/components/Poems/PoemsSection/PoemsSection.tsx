@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
-import styles from "./poems-section.module.css";
+import styles from "./poemssection.module.css";
 import Button from "@/components/Button/Button";
 import { Poem, poemService, WaitingPoem } from "@/services/poemService";
 import PoemsList from "../PoemsList/PoemsList";
 
-interface PoemsSectionProps {
-  userId: string;
-}
+interface PoemsSectionProps {}
 
-const PoemsSection: React.FC<PoemsSectionProps> = ({ userId }) => {
+const PoemsSection: React.FC<PoemsSectionProps> = ({}) => {
   const [poems, setPoems] = useState<WaitingPoem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -29,7 +27,7 @@ const PoemsSection: React.FC<PoemsSectionProps> = ({ userId }) => {
     };
 
     fetchWaitingPoems();
-  }, [userId]);
+  }, []);
 
   return (
     <div className={styles.poemsSection}>
