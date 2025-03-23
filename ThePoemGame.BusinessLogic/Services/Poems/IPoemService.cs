@@ -1,4 +1,5 @@
 ﻿using ThePoemGame.BusinessLogic.Services.Poems.Requests;
+using ThePoemGame.BusinessLogic.Services.Poems.Responses;
 using ThePoemGame.Common.Models;
 
 namespace ThePoemGame.BusinessLogic.Services.Poems
@@ -8,5 +9,6 @@ namespace ThePoemGame.BusinessLogic.Services.Poems
         Task<Poem> AddLineToPoemAsync(LinePostRequest request, string userObjectId);
         Task<Poem> CreatePoemAsync(PoemPostRequest request, string userObjectId);
         Task<Poem> GetPoemAsync(Guid id);
+        Task<List<WaitingPoemResponse>> GetPoemsWaitingForUserAsync(string userObjectId);
     }
 }

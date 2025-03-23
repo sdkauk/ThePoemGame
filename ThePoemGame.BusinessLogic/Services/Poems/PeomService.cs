@@ -1,4 +1,5 @@
 ﻿using ThePoemGame.BusinessLogic.Services.Poems.Requests;
+using ThePoemGame.BusinessLogic.Services.Poems.Responses;
 using ThePoemGame.Common.Models;
 using ThePoemGame.DataAccess.Repositories;
 
@@ -19,6 +20,48 @@ namespace ThePoemGame.BusinessLogic.Services.Poems
         public async Task<Poem> GetPoemAsync(Guid id)
         {
             return await poemRepository.GetPoemAsync(id);
+        }
+
+        public async Task<List<WaitingPoemResponse>> GetPoemsWaitingForUserAsync(string userObjectId)
+        {
+            var user = await userRepository.GetUserFromAuthenticationAsync(userObjectId);
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+
+            List<WaitingPoemResponse> waitingPoems = new List<WaitingPoemResponse>();
+
+            var userGames = await gameRepository.GetGamesByUserAsync(user.Id);
+
+            var gameMap = userGames.ToDictionary(g => g.Id, g => g);
+
+            //TODO: add repo method for this
+            foreach (var basicPoem in user.PoemsWaiting)
+            {
+                var poem = await poemRepository.GetPoemAsync(basicPoem.Id);
+                if (poem != null)
+                {
+                    // Find which game this poem belongs to
+                    var game = gameMap.Values.FirstOrDefault(g =>
+                        g.Poems.Any(p => p.Id == poem.Id));
+
+                    if (game != null)
+                    {
+                        waitingPoems.Add(new WaitingPoemResponse
+                        {
+                            PoemId = poem.Id,
+                            Title = poem.Title,
+                            Author = poem.Author,
+                            LineCount = poem.Lines.Count,
+                            GameId = game.Id,
+                            GameName = game.Name
+                        });
+                    }
+                }
+            }
+
+            return waitingPoems;
         }
 
         //TODO Add validation

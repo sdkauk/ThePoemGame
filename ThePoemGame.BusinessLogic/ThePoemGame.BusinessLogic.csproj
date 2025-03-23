@@ -19,6 +19,7 @@
   <ItemGroup>
     <Folder Include="Services\Groups\Requests\" />
     <Folder Include="Services\Lines\" />
+    <Folder Include="Services\Users\Responses\" />
   </ItemGroup>
 
 </Project>

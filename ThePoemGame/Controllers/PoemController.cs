@@ -36,6 +36,15 @@ public class PoemsController : ControllerBase
         return Ok(poem);
     }
 
+    [HttpGet]
+    [Route("waiting")]
+    public async Task<IActionResult> GetPoemsWaitingForUser()
+    {
+        string userObjectId = claimsService.GetObjectId(User);
+        var poems = await poemService.GetPoemsWaitingForUserAsync(userObjectId);
+        return Ok(poems);
+    }
+
     [HttpPost]
     [Route("create")]
     public async Task<IActionResult> CreatePoem([FromBody] PoemPostRequest request)

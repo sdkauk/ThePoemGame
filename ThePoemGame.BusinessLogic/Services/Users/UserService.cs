@@ -1,4 +1,5 @@
 ﻿using ThePoemGame.BusinessLogic.Services.Users.Requests;
+using ThePoemGame.BusinessLogic.Services.Users.Responses;
 using ThePoemGame.Common.Models;
 using ThePoemGame.DataAccess.Repositories;
 
