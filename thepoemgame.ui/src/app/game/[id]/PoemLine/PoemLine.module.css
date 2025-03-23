@@ -1,0 +1,51 @@
+.poemLine {
+  margin-bottom: 1.75rem; /* Must match the line height from LinedPaper */
+  position: relative;
+  padding-left: 1rem;
+  border-left: 3px solid transparent;
+}
+
+.lineContent {
+  font-size: 1rem;
+  line-height: 1.75rem; /* Must match the background-size from LinedPaper */
+  white-space: pre-wrap; /* Preserves whitespace but allows wrapping */
+  word-break: break-word;
+  margin: 0;
+}
+
+.lineAuthor {
+  font-size: 0.85rem;
+  font-style: italic;
+  text-align: right;
+  color: var(--color-gray-600);
+  line-height: 1.75rem; /* Keep consistent with the ruled lines */
+}
+
+.currentLine {
+  border-left-color: var(--color-primary);
+}
+
+.obscuredLine {
+  height: 1.75rem; /* Match line height */
+  position: relative;
+  overflow: hidden;
+}
+
+.obscuredContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(200, 200, 200, 0.25);
+  backdrop-filter: blur(4px);
+}
+
+/* Add some visual differentiation between lines */
+.poemLine:nth-child(odd) {
+  background-color: rgba(250, 250, 250, 0.3);
+}
+
+.poemLine:hover {
+  background-color: rgba(240, 240, 255, 0.3);
+}

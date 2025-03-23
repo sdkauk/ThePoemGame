@@ -1,0 +1,84 @@
+.createPoemsPhase {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem 0;
+  align-items: center;
+}
+
+.gamePhaseTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--color-primary);
+}
+
+.instructions {
+  text-align: center;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.createPoemContainer {
+  width: 100%;
+  max-width: 800px;
+}
+
+.poemForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.paperPreview {
+  margin: 1.5rem 0;
+}
+
+.lineInputContainer {
+  margin-top: 1rem;
+}
+
+.lineTextarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.75rem; /* Must match the line height from LinedPaper */
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--border-radius-md);
+  resize: vertical;
+  background-color: transparent;
+  font-family: inherit;
+}
+
+.lineTextarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-light);
+}
+
+.formActions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.poemCreatedCard {
+  max-width: 600px;
+  text-align: center;
+  padding: 2rem;
+}
+
+.cardTitle {
+  color: var(--color-primary);
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* Error handling */
+.error {
+  color: #e53e3e;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}

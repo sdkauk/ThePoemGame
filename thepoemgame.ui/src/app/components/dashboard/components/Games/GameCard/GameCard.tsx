@@ -100,7 +100,7 @@ const GameCard: React.FC<GameCardProps> = ({
           variant="primary"
           size="sm"
           onClick={() => {
-            /* Handle view game */
+            window.location.href = `/game/${game.id}`;
           }}
         >
           View Game
