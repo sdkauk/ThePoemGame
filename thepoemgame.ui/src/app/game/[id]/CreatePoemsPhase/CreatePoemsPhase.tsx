@@ -1,139 +1,75 @@
 import React, { useState } from "react";
 import styles from "./CreatePoemsPhase.module.css";
-import { Game } from "@/services/gameService";
-import { poemService, PoemPostRequest } from "@/services/poemService";
-import Card from "@/components/Card/card";
-import Button from "@/components/Button/Button";
-import Input from "@/components/Input/input";
-import LinedPaper from "../LinedPaper/LinedPaper";
-import Label from "@/components/Label/label";
-import FormItem from "@/components/Form/FormItem/FormItem";
+import Carousel from "./Components/Carousel";
+import {
+  Paper1,
+  Paper2,
+  Paper3,
+  Paper4,
+  Paper5,
+} from "./Components/PaperStyles";
+import CarouselDemo from "./Components/CarouselDemo";
 
-interface CreatePoemsPhaseProps {
-  game: Game;
-  onPoemCreated: () => void;
-}
+interface CreatePoemsPhaseProps {}
 
-const CreatePoemsPhase: React.FC<CreatePoemsPhaseProps> = ({
-  game,
-  onPoemCreated,
-}) => {
-  const [title, setTitle] = useState("");
-  const [firstLine, setFirstLine] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
+type Step = "CHOOSE_PAPER" | "WRITE_TITLE" | "WRITE_FIRST_LINE";
 
-  // Check if user has already created a poem
-  //   const hasCreatedPoem = game.hasCreatedPoem;
+const CreatePoemsPhase: React.FC<CreatePoemsPhaseProps> = ({}) => {
+  const [currentStep, setCurrentStep] = useState<Step>("CHOOSE_PAPER");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const renderStep = () => {
+    switch (currentStep) {
+      case "CHOOSE_PAPER":
+        return (
+          <div className={styles.carouselContainer}>
+            <h1 className={styles.heading}>Choose Your Paper</h1>
+            <CarouselDemo />
+            {/* <Carousel initialPosition={1}>
+              <Paper1>
+                <div className={styles.cardContent}>
+                  <h3 className={styles.cardTitle}>Paper Style 1</h3>
+                  <p>Simple white card for your content.</p>
+                </div>
+              </Paper1>
 
-    if (!title.trim()) {
-      setError("Please enter a title for your poem");
-      return;
-    }
+              <Paper2>
+                <div className={styles.cardContent}>
+                  <h3 className={styles.cardTitle}>Paper Style 2</h3>
+                  <p>Another card option for your poem.</p>
+                </div>
+              </Paper2>
 
-    if (!firstLine.trim()) {
-      setError("Please enter the first line of your poem");
-      return;
-    }
+              <Paper3>
+                <div className={styles.cardContent}>
+                  <h3 className={styles.cardTitle}>Paper Style 3</h3>
+                  <p>A third style for your creative writing.</p>
+                </div>
+              </Paper3>
 
-    try {
-      setIsSubmitting(true);
-      setError(null);
+              <Paper4>
+                <div className={styles.cardContent}>
+                  <h3 className={styles.cardTitle}>Paper Style 4</h3>
+                  <p>Yet another card design to choose from.</p>
+                </div>
+              </Paper4>
 
-      const poemRequest: PoemPostRequest = {
-        gameId: game.id,
-        title: title.trim(),
-        firstLineContent: firstLine.trim(),
-      };
-
-      await poemService.createPoem(poemRequest);
-      setSuccess(true);
-
-      // Reset form
-      setTitle("");
-      setFirstLine("");
-
-      // Notify parent component that poem was created
-      onPoemCreated();
-    } catch (err) {
-      console.error("Error creating poem:", err);
-      setError("Failed to create poem. Please try again.");
-    } finally {
-      setIsSubmitting(false);
+              <Paper5>
+                <div className={styles.cardContent}>
+                  <h3 className={styles.cardTitle}>Paper Style 5</h3>
+                  <p>The fifth card style for your poem.</p>
+                </div>
+              </Paper5>
+            </Carousel> */}
+          </div>
+        );
+      case "WRITE_TITLE":
+        return <></>;
+      case "WRITE_FIRST_LINE":
+        return <></>;
     }
   };
 
-  if (success) {
-    return (
-      <div className={styles.createPoemsPhase}>
-        <h2 className={styles.gamePhaseTitle}>Creation Phase</h2>
-        <Card className={styles.poemCreatedCard}>
-          <h3 className={styles.cardTitle}>Poem Created!</h3>
-          <p>You've successfully created your poem for this game.</p>
-          <p>
-            Once all players have created their poems, the game will advance to
-            the Round Robin phase.
-          </p>
-        </Card>
-      </div>
-    );
-  }
-
-  return (
-    <div className={styles.createPoemsPhase}>
-      <div className={styles.createPoemContainer}>
-        <form onSubmit={handleSubmit} className={styles.poemForm}>
-          <FormItem
-            label="Poem Title"
-            htmlFor="poemTitle"
-            required
-            error={error || undefined}
-          >
-            <Input
-              id="poemTitle"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="Enter a title for your poem"
-              fullWidth
-              disabled={isSubmitting}
-            />
-          </FormItem>
-
-          <div className={styles.paperPreview}>
-            <LinedPaper title={title || "Your Poem Title"}>
-              <div className={styles.lineInputContainer}>
-                <Label htmlFor="firstLine" required>
-                  First Line
-                </Label>
-                <textarea
-                  id="firstLine"
-                  className={styles.lineTextarea}
-                  value={firstLine}
-                  onChange={(e) => setFirstLine(e.target.value)}
-                  placeholder="Write the first line of your poem..."
-                  disabled={isSubmitting}
-                />
-              </div>
-            </LinedPaper>
-          </div>
-
-          <div className={styles.formActions}>
-            <Button
-              type="submit"
-              variant="primary"
-              disabled={isSubmitting || !title.trim() || !firstLine.trim()}
-            >
-              {isSubmitting ? "Creating..." : "Create Poem"}
-            </Button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
+  return <div className={styles.container}>{renderStep()}</div>;
 };
 
 export default CreatePoemsPhase;

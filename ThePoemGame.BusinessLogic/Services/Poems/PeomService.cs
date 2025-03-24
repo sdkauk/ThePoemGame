@@ -88,7 +88,8 @@ namespace ThePoemGame.BusinessLogic.Services.Poems
                 Title = request.Title,
                 Author = user,
                 Lines = [firstLine],
-                CreatedAt = DateTime.UtcNow
+                CreatedAt = DateTime.UtcNow,
+                PaperType = request.PaperType
             };
 
             await gameRepository.AddPoemToGame(request.GameId, new BasicPoem(poem));

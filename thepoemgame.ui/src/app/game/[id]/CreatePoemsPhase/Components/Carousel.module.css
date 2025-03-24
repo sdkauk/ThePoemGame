@@ -1,0 +1,128 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 0 3rem;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 60vh;
+  min-height: 400px;
+  max-height: 600px;
+  position: relative;
+  overflow: visible;
+  perspective: 1000px;
+}
+
+.item {
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  position: absolute;
+  width: 80%;
+  max-width: 400px;
+  height: 100%;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  overflow: hidden;
+  left: 50%;
+  transform-origin: center center;
+  /* Start with an absolute positioning relative to center */
+  /* translateX will be applied in JS for horizontal movement */
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-bottom: 0.5rem;
+}
+
+.navBtn {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid #333;
+  background-color: transparent;
+  margin: 0 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.navBtnActive {
+  background-color: #333;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.arrowLeft {
+  left: 1rem;
+}
+
+.arrowRight {
+  right: 1rem;
+}
+
+.emptyCarousel {
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  color: #666;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  .arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .arrowLeft {
+    left: 0.5rem;
+  }
+
+  .arrowRight {
+    right: 0.5rem;
+  }
+
+  .item {
+    width: 85%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    height: 50vh;
+  }
+
+  .item {
+    width: 90%;
+  }
+}

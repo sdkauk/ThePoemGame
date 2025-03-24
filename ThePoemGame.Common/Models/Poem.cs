@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
+using ThePoemGame.Common.Enums;
 
 namespace ThePoemGame.Common.Models
 {
@@ -15,5 +16,6 @@ namespace ThePoemGame.Common.Models
         public DateTime CreatedAt { get; set; }
         public DateTime FinishedAt { get; set; }
         public bool Completed { get; set; } = false;
+        public PaperType PaperType { get; set; } = PaperType.Default;
     }
 }
