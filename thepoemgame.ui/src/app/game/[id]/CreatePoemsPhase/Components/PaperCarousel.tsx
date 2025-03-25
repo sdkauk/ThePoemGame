@@ -25,7 +25,8 @@ const PaperCarousel: React.FC<PaperCarouselProps> = ({}) => {
     { component: BlackPaper, name: "dark" },
     { component: WatercolorPaper, name: "watercolor" },
   ];
-  return <Carousel />;
+
+  return <Carousel items={papers} />;
 };
 
 export default PaperCarousel;

@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import styles from "./PaperCarousel.module.css";
+import styles from "./Carousel.module.css";
 import { PaperProps } from "./PaperStyles";
 
 interface CarouselProps {
