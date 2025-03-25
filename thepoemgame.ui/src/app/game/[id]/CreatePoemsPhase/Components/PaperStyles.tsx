@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./PaperStyles.module.css";
 
-interface PaperProps {
+export interface PaperProps {
   children?: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;

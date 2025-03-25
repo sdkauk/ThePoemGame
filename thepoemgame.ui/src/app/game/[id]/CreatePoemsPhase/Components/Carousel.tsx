@@ -1,114 +1,151 @@
-import React, { useState, useEffect, Children, cloneElement } from "react";
-import styles from "./Carousel.module.css";
+import React, { FC, useState } from "react";
+import styles from "./PaperCarousel.module.css";
+import { PaperProps } from "./PaperStyles";
 
 interface CarouselProps {
-  children: React.ReactNode;
+  onSelectPaper?: (paperType: string) => void;
+  items: { component: FC<PaperProps>; name: string }[];
   initialPosition?: number;
-  showArrows?: boolean;
-  showDots?: boolean;
-  className?: string;
 }
 
 const Carousel: React.FC<CarouselProps> = ({
-  children,
-  initialPosition = 1,
-  showArrows = true,
-  showDots = true,
-  className = "",
+  onSelectPaper,
+  items,
+  initialPosition = 0,
 }) => {
-  const childrenArray = Children.toArray(children);
-  const totalItems = childrenArray.length;
-  const [position, setPosition] = useState(
-    Math.min(Math.max(initialPosition, 1), totalItems || 1)
+  const [activeIndex, setActiveIndex] = useState(
+    Math.min(initialPosition, items.length - 1)
   );
 
-  if (totalItems < 1) {
-    return <div className={styles.emptyCarousel}>No items to display</div>;
-  }
-
   const handlePrevious = () => {
-    setPosition((prev) => (prev > 1 ? prev - 1 : prev));
+    setActiveIndex((prev) => {
+      const newIndex = prev > 0 ? prev - 1 : prev;
+      if (onSelectPaper) onSelectPaper(items[newIndex].name);
+      return newIndex;
+    });
   };
 
   const handleNext = () => {
-    setPosition((prev) => (prev < totalItems ? prev + 1 : prev));
+    setActiveIndex((prev) => {
+      const newIndex = prev < items.length - 1 ? prev + 1 : prev;
+      if (onSelectPaper) onSelectPaper(items[newIndex].name);
+      return newIndex;
+    });
   };
 
   const handleDotClick = (index: number) => {
-    setPosition(index + 1);
+    setActiveIndex(index);
+    if (onSelectPaper) onSelectPaper(items[index].name);
   };
 
-  // Apply position-based styling to all items
-  const positionedChildren = childrenArray.map((child, index) => {
-    // Calculate relative position variables
-    const offset = index + 1;
-    const relativePos = position - offset;
-    const absRelativePos = Math.abs(relativePos);
-
-    // Simplified transforms for better centering and visibility
-    const scale = 1 - 0.2 * Math.min(absRelativePos, 1);
-    const translateX = -350 * relativePos; // Reduced distance to keep cards more centered
-    const zIndex = 10 - absRelativePos;
-    const opacity = 1 - 0.4 * Math.min(absRelativePos, 1); // Less opacity change
-    const visible = absRelativePos <= 1.5; // Show slightly more cards
-
-    return cloneElement(child as React.ReactElement, {
-      key: index,
-      className: `${styles.item} ${
-        (child as React.ReactElement).props.className || ""
-      }`,
-      style: {
-        transform: `translateX(${translateX}px) scale(${scale})`,
-        zIndex,
-        opacity,
-        visibility: visible ? "visible" : "hidden",
-        pointerEvents: visible ? "auto" : "none",
-        ...(child as React.ReactElement).props.style,
-      },
-    });
-  });
-
   return (
-    <div className={`${styles.wrapper} ${className}`}>
-      <div className={styles.container}>{positionedChildren}</div>
+    <div className={styles.carouselWrapper}>
+      <div className={styles.carouselViewport}>
+        {items.map((item, index) => {
+          // Calculate the position relative to the active item
+          const offset = index - activeIndex;
 
-      {showArrows && (
-        <>
-          <button
-            onClick={handlePrevious}
-            className={`${styles.arrow} ${styles.arrowLeft}`}
-            aria-label="Previous item"
-            disabled={position <= 1}
-          >
-            ←
-          </button>
+          // Apply transforms based on the offset
+          const isActive = offset === 0;
+          const isVisible = Math.abs(offset) <= 1;
 
-          <button
-            onClick={handleNext}
-            className={`${styles.arrow} ${styles.arrowRight}`}
-            aria-label="Next item"
-            disabled={position >= totalItems}
-          >
-            →
-          </button>
-        </>
-      )}
+          // Calculate transforms
+          let translateX = offset * 150; // % of container width
+          let scale = isActive ? 1 : 0.8;
+          let zIndex = isActive ? 10 : 5 - Math.abs(offset);
+          let opacity = isActive ? 1 : 0.5;
 
-      {showDots && (
-        <div className={styles.nav}>
-          {childrenArray.map((_, index) => (
-            <button
+          const PaperComponent = item.component;
+
+          return (
+            <div
               key={index}
-              className={`${styles.navBtn} ${
-                position === index + 1 ? styles.navBtnActive : ""
+              className={`${styles.itemWrapper} ${
+                isActive ? styles.activeItem : ""
               }`}
+              style={{
+                transform: `translateX(${translateX}%) scale(${scale})`,
+                zIndex,
+                opacity,
+                visibility: isVisible ? "visible" : "hidden",
+              }}
               onClick={() => handleDotClick(index)}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
-      )}
+            >
+              <PaperComponent className={styles.carouselItem} />
+              {isActive && (
+                <div className={styles.selectionIndicator}>
+                  <span className={styles.selectedText}>Selected</span>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      <button
+        onClick={handlePrevious}
+        className={`${styles.navButton} ${styles.prevButton}`}
+        disabled={activeIndex <= 0}
+        aria-label="Previous paper style"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <button
+        onClick={handleNext}
+        className={`${styles.navButton} ${styles.nextButton}`}
+        disabled={activeIndex >= items.length - 1}
+        aria-label="Next paper style"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+
+      <div className={styles.dotsContainer}>
+        {items.map((_, index) => (
+          <button
+            key={index}
+            className={`${styles.dot} ${
+              activeIndex === index ? styles.activeDot : ""
+            }`}
+            onClick={() => handleDotClick(index)}
+            aria-label={`Select paper style ${index + 1}`}
+          />
+        ))}
+      </div>
+
+      <div className={styles.paperName}>
+        {items[activeIndex].name
+          .split("-")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ")}{" "}
+        Paper
+      </div>
     </div>
   );
 };
+
 export default Carousel;
