@@ -7,90 +7,110 @@ interface PaperProps {
   style?: React.CSSProperties;
 }
 
-// Create simple paper components with minimal styling
-export const Paper1: React.FC<PaperProps> = ({
+// Clean White Paper
+export const BlankWhitePaper: React.FC<PaperProps> = ({
   children,
   className = "",
   style,
 }) => (
   <div
-    className={`${styles.paperBase} ${styles.paper1} ${className}`}
+    className={`${styles.paperBase} ${styles.blankWhite} ${className}`}
     style={style}
   >
     <div className={styles.paperContent}>{children}</div>
   </div>
 );
 
-export const Paper2: React.FC<PaperProps> = ({
+// Lined Paper with blue lines
+export const BlueLined: React.FC<PaperProps> = ({
   children,
   className = "",
   style,
 }) => (
   <div
-    className={`${styles.paperBase} ${styles.paper2} ${className}`}
+    className={`${styles.paperBase} ${styles.blueLined} ${className}`}
     style={style}
   >
     <div className={styles.paperContent}>{children}</div>
   </div>
 );
 
-export const Paper3: React.FC<PaperProps> = ({
+// Yellowish aged paper with slight texture
+export const YellowishPaper: React.FC<PaperProps> = ({
   children,
   className = "",
   style,
 }) => (
   <div
-    className={`${styles.paperBase} ${styles.paper3} ${className}`}
+    className={`${styles.paperBase} ${styles.yellowish} ${className}`}
     style={style}
   >
     <div className={styles.paperContent}>{children}</div>
   </div>
 );
 
-export const Paper4: React.FC<PaperProps> = ({
+// Graph paper with grid
+export const GraphPaper: React.FC<PaperProps> = ({
   children,
   className = "",
   style,
 }) => (
   <div
-    className={`${styles.paperBase} ${styles.paper4} ${className}`}
+    className={`${styles.paperBase} ${styles.graphPaper} ${className}`}
     style={style}
   >
     <div className={styles.paperContent}>{children}</div>
   </div>
 );
 
-export const Paper5: React.FC<PaperProps> = ({
+// Dotted paper (bullet journal style)
+export const DottedPaper: React.FC<PaperProps> = ({
   children,
   className = "",
   style,
 }) => (
   <div
-    className={`${styles.paperBase} ${styles.paper5} ${className}`}
+    className={`${styles.paperBase} ${styles.dottedPaper} ${className}`}
     style={style}
   >
     <div className={styles.paperContent}>{children}</div>
   </div>
 );
 
-// Keep a blank white paper for backward compatibility
-export const BlankWhitePaper: React.FC<PaperProps> = Paper1;
-export const BlueLined: React.FC<PaperProps> = Paper2;
-export const YellowishPaper: React.FC<PaperProps> = Paper3;
-export const GraphPaper: React.FC<PaperProps> = Paper4;
-export const DottedPaper: React.FC<PaperProps> = Paper5;
-export const MarginedPaper: React.FC<PaperProps> = Paper1;
+// Black Paper with light lines for dramatic contrast
+export const BlackPaper: React.FC<PaperProps> = ({
+  children,
+  className = "",
+  style,
+}) => (
+  <div
+    className={`${styles.paperBase} ${styles.blackPaper} ${className}`}
+    style={style}
+  >
+    <div className={styles.paperContent}>{children}</div>
+  </div>
+);
+
+// Watercolor paper with subtle texture
+export const WatercolorPaper: React.FC<PaperProps> = ({
+  children,
+  className = "",
+  style,
+}) => (
+  <div
+    className={`${styles.paperBase} ${styles.watercolorPaper} ${className}`}
+    style={style}
+  >
+    <div className={styles.paperContent}>{children}</div>
+  </div>
+);
 
 export default {
-  Paper1,
-  Paper2,
-  Paper3,
-  Paper4,
-  Paper5,
   BlankWhitePaper,
   BlueLined,
   YellowishPaper,
   GraphPaper,
   DottedPaper,
-  MarginedPaper,
+  BlackPaper,
+  WatercolorPaper,
 };

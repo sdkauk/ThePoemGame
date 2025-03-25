@@ -116,7 +116,7 @@ export default function GamePage() {
       </Navbar>
 
       <main className="flex-1 py-8">
-        <Container maxWidth="lg">{renderGameContent()}</Container>
+        <Container>{renderGameContent()}</Container>
       </main>
     </div>
   );
