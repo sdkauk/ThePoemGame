@@ -106,15 +106,6 @@ export default function GamePage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar
-        fixed={false}
-        logo={
-          <h1 className="text-2xl font-bold text-purple-800">The Poem Game</h1>
-        }
-      >
-        <NavItem href="/dashboard">Back to Dashboard</NavItem>
-      </Navbar>
-
       <main className="flex-1 py-8">
         <Container>{renderGameContent()}</Container>
       </main>

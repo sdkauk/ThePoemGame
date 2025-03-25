@@ -49,34 +49,6 @@ export const YellowishPaper: React.FC<PaperProps> = ({
   </div>
 );
 
-// Graph paper with grid
-export const GraphPaper: React.FC<PaperProps> = ({
-  children,
-  className = "",
-  style,
-}) => (
-  <div
-    className={`${styles.paperBase} ${styles.graphPaper} ${className}`}
-    style={style}
-  >
-    <div className={styles.paperContent}>{children}</div>
-  </div>
-);
-
-// Dotted paper (bullet journal style)
-export const DottedPaper: React.FC<PaperProps> = ({
-  children,
-  className = "",
-  style,
-}) => (
-  <div
-    className={`${styles.paperBase} ${styles.dottedPaper} ${className}`}
-    style={style}
-  >
-    <div className={styles.paperContent}>{children}</div>
-  </div>
-);
-
 // Black Paper with light lines for dramatic contrast
 export const BlackPaper: React.FC<PaperProps> = ({
   children,
@@ -109,8 +81,6 @@ export default {
   BlankWhitePaper,
   BlueLined,
   YellowishPaper,
-  GraphPaper,
-  DottedPaper,
   BlackPaper,
   WatercolorPaper,
 };

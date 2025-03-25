@@ -4,8 +4,6 @@ import {
   BlankWhitePaper,
   BlueLined,
   YellowishPaper,
-  GraphPaper,
-  DottedPaper,
   BlackPaper,
   WatercolorPaper,
 } from "./PaperStyles";
@@ -15,18 +13,25 @@ interface PaperCarouselProps {
   initialPosition?: number;
 }
 
-const PaperCarousel: React.FC<PaperCarouselProps> = ({}) => {
+const PaperCarousel: React.FC<PaperCarouselProps> = ({
+  onSelectPaper,
+  initialPosition = 0,
+}) => {
   const papers = [
     { component: BlankWhitePaper, name: "clean-white" },
     { component: BlueLined, name: "blue-lined" },
     { component: YellowishPaper, name: "vintage" },
-    { component: GraphPaper, name: "graph" },
-    { component: DottedPaper, name: "dotted" },
     { component: BlackPaper, name: "dark" },
     { component: WatercolorPaper, name: "watercolor" },
   ];
 
-  return <Carousel items={papers} />;
+  return (
+    <Carousel
+      items={papers}
+      onSelectPaper={onSelectPaper}
+      initialPosition={initialPosition}
+    />
+  );
 };
 
 export default PaperCarousel;

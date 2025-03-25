@@ -17,10 +17,12 @@ const Carousel: React.FC<CarouselProps> = ({
     Math.min(initialPosition, items.length - 1)
   );
 
+  // Modify these functions to not trigger paper selection:
   const handlePrevious = () => {
     setActiveIndex((prev) => {
       const newIndex = prev > 0 ? prev - 1 : prev;
-      if (onSelectPaper) onSelectPaper(items[newIndex].name);
+      // Remove this line to prevent selection when using arrows
+      // if (onSelectPaper) onSelectPaper(items[newIndex].name);
       return newIndex;
     });
   };
@@ -28,13 +30,22 @@ const Carousel: React.FC<CarouselProps> = ({
   const handleNext = () => {
     setActiveIndex((prev) => {
       const newIndex = prev < items.length - 1 ? prev + 1 : prev;
-      if (onSelectPaper) onSelectPaper(items[newIndex].name);
+      // Remove this line to prevent selection when using arrows
+      // if (onSelectPaper) onSelectPaper(items[newIndex].name);
       return newIndex;
     });
   };
 
+  // Also modify the handleDotClick function:
   const handleDotClick = (index: number) => {
     setActiveIndex(index);
+    // Remove this line to prevent selection when clicking dots
+    // if (onSelectPaper) onSelectPaper(items[index].name);
+  };
+
+  const handleItemClick = (index: number) => {
+    setActiveIndex(index);
+    // Trigger the paper selection callback when an item is clicked directly
     if (onSelectPaper) onSelectPaper(items[index].name);
   };
 
@@ -69,7 +80,7 @@ const Carousel: React.FC<CarouselProps> = ({
                 opacity,
                 visibility: isVisible ? "visible" : "hidden",
               }}
-              onClick={() => handleDotClick(index)}
+              onClick={() => handleItemClick(index)}
             >
               <PaperComponent className={styles.carouselItem} />
               {isActive && (
