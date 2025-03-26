@@ -85,7 +85,7 @@ export default function GamePage() {
       case GamePhase.CreatePoems:
         return (
           // <CreatePoemsPhase game={game} onPoemCreated={handlePoemCreated} />
-          <CreatePoemsPhase />
+          <CreatePoemsPhase game={game} onPoemCreated={handlePoemCreated} />
         );
       case GamePhase.RoundRobin:
         return (
