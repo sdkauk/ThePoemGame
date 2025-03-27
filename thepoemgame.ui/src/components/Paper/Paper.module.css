@@ -1,0 +1,17 @@
+/* Paper.module.css - Initial version */
+.paper {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+.blue-lined {
+  /* Blue lined paper specific styles will go here */
+}
+
+.blank-white {
+  /* Clean white paper styles will go here */
+}

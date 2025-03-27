@@ -1,0 +1,31 @@
+.lineNumber {
+  position: absolute;
+  left: 1rem;
+  font-size: 0.75rem;
+  color: #888;
+  width: 1.5rem;
+  text-align: center;
+}
+
+.lineContent {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  color: #333;
+  height: 100%;
+}
+
+.lineText {
+  flex: 1;
+  padding-left: 1.5rem; /* Space for margin */
+}
+
+.lineAuthor {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #6b7280;
+  padding-left: 0.75rem;
+  white-space: nowrap;
+}
