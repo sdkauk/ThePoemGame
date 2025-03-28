@@ -5,6 +5,7 @@ import PoemsSection from "./components/Poems/PoemsSection/PoemsSection";
 import GamesSection from "./components/Games/GamesSection/GamesSection";
 import Grid from "@/components/Grid/grid";
 import Column from "@/components/Column/column";
+import PoemDisplay from "@/components/PoemDisplay/PoemDisplay";
 
 interface DashboardProps {
   user: any;

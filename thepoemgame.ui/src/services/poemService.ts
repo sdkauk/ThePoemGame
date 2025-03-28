@@ -1,3 +1,4 @@
+import { PaperType } from "@/app/game/[id]/CreatePoemsPhase/Components/PaperStyles";
 import { authFetch } from "../utils/authFetch";
 
 const API_BASE_URL = "http://localhost:5209";

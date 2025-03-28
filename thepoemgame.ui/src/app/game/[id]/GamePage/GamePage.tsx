@@ -64,16 +64,17 @@ export default function GamePage() {
   };
 
   const handlePoemCreated = async () => {
-    // Reload game data to reflect new state
-    try {
-      setLoading(true);
-      const gameData = await gameService.getGame(gameId);
-      setGame(gameData);
-    } catch (err) {
-      console.error("Error refreshing game data:", err);
-    } finally {
-      setLoading(false);
-    }
+    // // Reload game data to reflect new state
+    // try {
+    //   setLoading(true);
+    //   const gameData = await gameService.getGame(gameId);
+    //   setGame(gameData);
+    // } catch (err) {
+    //   console.error("Error refreshing game data:", err);
+    // } finally {
+    //   setLoading(false);
+    // }
+    // setShowPoemSuccess(true);
   };
 
   const renderGameContent = () => {

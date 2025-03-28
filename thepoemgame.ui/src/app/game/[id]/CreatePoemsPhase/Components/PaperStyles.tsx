@@ -1,6 +1,14 @@
 import React from "react";
 import styles from "./PaperStyles.module.css";
 
+export enum PaperType {
+  CleanWhite = 0,
+  BlueLinked = 1,
+  Vintage = 2,
+  Dark = 3,
+  Watercolor = 4,
+}
+
 export interface PaperProps {
   children?: React.ReactNode;
   className?: string;

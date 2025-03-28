@@ -1,27 +1,30 @@
 import React from "react";
 import Carousel from "./Carousel";
-import {
-  BlankWhitePaper,
-  BlueLined,
-  YellowishPaper,
-  BlackPaper,
-  WatercolorPaper,
-} from "./PaperStyles";
+import PoemDisplay from "@/components/PoemDisplay/PoemDisplay";
 
 interface PaperCarouselProps {
   onSelectPaper?: (paperType: string) => void;
   initialPosition?: number;
 }
+const BluePaper = (props) => <PoemDisplay paperType="blue-lined" {...props} />;
+const WhitePaper = (props) => (
+  <PoemDisplay paperType="clean-white" {...props} />
+);
+const VintagePaper = (props) => <PoemDisplay paperType="vintage" {...props} />;
+const DarkPaper = (props) => <PoemDisplay paperType="dark" {...props} />;
+const WatercolorPaper = (props) => (
+  <PoemDisplay paperType="watercolor" {...props} />
+);
 
 const PaperCarousel: React.FC<PaperCarouselProps> = ({
   onSelectPaper,
   initialPosition = 0,
 }) => {
   const papers = [
-    { component: BlankWhitePaper, name: "clean-white" },
-    { component: BlueLined, name: "blue-lined" },
-    { component: YellowishPaper, name: "vintage" },
-    { component: BlackPaper, name: "dark" },
+    { component: WhitePaper, name: "clean-white" },
+    { component: BluePaper, name: "blue-lined" },
+    { component: VintagePaper, name: "vintage" },
+    { component: DarkPaper, name: "dark" },
     { component: WatercolorPaper, name: "watercolor" },
   ];
 

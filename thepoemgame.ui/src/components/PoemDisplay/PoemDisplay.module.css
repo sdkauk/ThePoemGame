@@ -1,0 +1,30 @@
+.blankLine {
+  position: relative;
+  height: 1.7rem;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  border-bottom: 1px solid rgba(0, 100, 255, 0.12);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.blankLine:hover {
+  background-color: rgba(0, 100, 255, 0.05);
+}
+
+.lineNumber {
+  position: absolute;
+  left: 1rem;
+  font-size: 0.75rem;
+  color: #888;
+  width: 1.5rem;
+  text-align: center;
+}
+
+.lineContent {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  min-height: 1.5rem;
+}

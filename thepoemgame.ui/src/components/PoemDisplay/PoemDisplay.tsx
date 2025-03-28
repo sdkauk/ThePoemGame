@@ -1,29 +1,47 @@
 import React, { useEffect, useState, useRef } from "react";
-import Paper, { PaperTitleSection, PaperTitle, LineWrapper } from "./Paper";
+import Paper, {
+  PaperTitleSection,
+  PaperTitle,
+  PaperLineWrapper,
+} from "../Paper/Paper";
+import styles from "./PoemDisplay.module.css";
 
-// Example poem data structure from API
-interface Author {
+// Define interfaces for poem data
+export interface Author {
   id: string;
   name: string;
 }
 
-interface PoemLine {
+export interface PoemLine {
   id: string;
   content: string;
   author: Author;
   lineNumber: number;
 }
 
-interface Poem {
+export interface Poem {
   id: string;
   title: string;
   lines: PoemLine[];
+  paperType?: "blue-lined" | "blank-white" | "vintage" | "dark" | "watercolor";
 }
 
-const PoemDisplay = () => {
-  const [poem, setPoem] = useState<Poem | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [containerWidth, setContainerWidth] = useState(0);
+interface PoemDisplayProps {
+  poem?: Poem | null;
+  totalLines?: number; // Total number of lines to display (including blanks)
+  paperType?: "blue-lined" | "blank-white" | "vintage" | "dark" | "watercolor";
+  className?: string;
+  onLineClick?: (lineNumber: number) => void; // Optional callback for when a line is clicked
+}
+
+const PoemDisplay: React.FC<PoemDisplayProps> = ({
+  poem,
+  totalLines = 24,
+  paperType,
+  className = "",
+  onLineClick,
+}) => {
+  const [containerWidth, setContainerWidth] = useState<number>(0);
   const paperRef = useRef<HTMLDivElement>(null);
 
   // Measure container width for text wrapping
@@ -41,46 +59,54 @@ const PoemDisplay = () => {
     return () => resizeObserver.disconnect();
   }, []);
 
-  // Fetch poem data from API
-  useEffect(() => {
-    const fetchPoemData = async () => {
-      try {
-        setLoading(true);
-        // Replace with your actual API call
-        const response = await fetch("/api/poems/123");
-        const data = await response.json();
-        setPoem(data);
-      } catch (error) {
-        console.error("Error fetching poem:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // Get the actual number of filled lines
+  const existingLineCount = poem?.lines?.length || 0;
 
-    fetchPoemData();
-  }, []);
+  // Calculate how many blank lines are needed
+  const blankLineCount = Math.max(0, totalLines - existingLineCount);
 
-  if (loading || !poem) {
-    return <div>Loading poem...</div>;
-  }
+  // Use paper type from poem data if provided, otherwise use prop or default
+  const activePaperType = poem?.paperType || paperType || "blue-lined";
+
+  // Handle click on a blank line
+  const handleBlankLineClick = (lineNumber: number) => {
+    if (onLineClick) {
+      onLineClick(lineNumber);
+    }
+  };
 
   return (
-    <div ref={paperRef}>
-      <Paper paperType="blue-lined" showLineNumbers={true}>
+    <div ref={paperRef} className={className}>
+      <Paper paperType={activePaperType} showLineNumbers={true}>
         <PaperTitleSection>
-          <PaperTitle>{poem.title}</PaperTitle>
+          <PaperTitle>{poem?.title || "Untitled Poem"}</PaperTitle>
         </PaperTitleSection>
 
-        {/* Auto-generate line sections from API data */}
-        {poem.lines.map((line) => (
-          <LineWrapper
-            key={line.id}
+        {/* Render existing poem lines with proper wrapping */}
+        {poem?.lines?.map((line) => (
+          <PaperLineWrapper
+            key={`poem-line-${line.id}`}
             content={line.content}
             lineNumber={line.lineNumber}
             author={line.author}
             containerWidth={containerWidth}
           />
         ))}
+
+        {/* Render blank lines to fill up to totalLines */}
+        {Array.from({ length: blankLineCount }).map((_, index) => {
+          const lineNumber = existingLineCount + index + 1;
+          return (
+            <div
+              key={`blank-line-${index}`}
+              className={styles.blankLine}
+              onClick={() => handleBlankLineClick(lineNumber)}
+            >
+              {/* <span className={styles.lineNumber}>{lineNumber}</span> */}
+              <div className={styles.lineContent}></div>
+            </div>
+          );
+        })}
       </Paper>
     </div>
   );
