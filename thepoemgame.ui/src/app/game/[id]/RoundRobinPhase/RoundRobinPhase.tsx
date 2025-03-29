@@ -11,6 +11,9 @@ import PoemCarousel from "../PoemCarousel/PoemCarousel";
 import Button from "@/components/Button/Button";
 import Input from "@/components/Input/input";
 import Card from "@/components/Card/card";
+import PoemDisplay from "@/components/PoemDisplay/PoemDisplay";
+import { PaperType } from "../CreatePoemsPhase/Components/PaperStyles";
+import FormItem from "@/components/Form/FormItem/FormItem";
 
 interface RoundRobinPhaseProps {
   game: Game;
@@ -80,43 +83,41 @@ const RoundRobinPhase: React.FC<RoundRobinPhaseProps> = ({
   }
 
   return (
-    <div className={styles.roundRobinPhase}>
-      <h2 className={styles.gamePhaseTitle}>Round Robin Phase</h2>
+    <div>
+      <PoemCarousel
+        currentPoem={currentPoem}
+        onPrevPoem={onPrevPoem}
+        onNextPoem={onNextPoem}
+        poemCount={waitingPoems.length}
+        currentIndex={currentPoemIndex}
+      />
 
-      <div className={styles.poemSection}>
-        <PoemCarousel
-          currentPoem={currentPoem}
-          onPrevPoem={onPrevPoem}
-          onNextPoem={onNextPoem}
-          poemCount={waitingPoems.length}
-          currentIndex={currentPoemIndex}
-        />
-
-        <div className={styles.inputSection}>
-          <div className={styles.instructions}>
-            <p>Add the next line to "{currentPoem?.title}"</p>
-            {error && <p className={styles.error}>{error}</p>}
+      <FormItem htmlFor="newLine" required error={error || undefined}>
+        <div className={styles.inputWithButton}>
+          <div className={styles.inputContainer}>
+            <Input
+              id="firstLine"
+              value={newLine}
+              onChange={(e) => {
+                setNewLine(e.target.value);
+                if (error) setError(null);
+              }}
+              placeholder="Write the first line of your poem..."
+              fullWidth
+              size="md"
+            />
           </div>
-
-          <Input
-            value={newLine}
-            onChange={(e) => setNewLine(e.target.value)}
-            placeholder="Write your line here..."
-            fullWidth
-            disabled={submitting}
-          />
-
-          <div className={styles.actionButtons}>
-            <Button
-              variant="primary"
-              onClick={handleSubmitLine}
-              disabled={submitting || !newLine.trim()}
-            >
-              {submitting ? "Submitting..." : "Submit Line"}
-            </Button>
-          </div>
+          {/* <Button
+            variant="primary"
+            onClick={handleSubmitPoem}
+            disabled={!firstLine.trim() || isSubmitting}
+            className={styles.inlineButton}
+            size="md"
+          >
+            {isSubmitting ? "Creating..." : "Create Poem"}
+          </Button> */}
         </div>
-      </div>
+      </FormItem>
     </div>
   );
 };
