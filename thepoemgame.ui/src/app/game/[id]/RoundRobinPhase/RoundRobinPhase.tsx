@@ -117,7 +117,7 @@ const RoundRobinPhase: React.FC<RoundRobinPhaseProps> = ({
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       {poemDisplays.length > 0 ? (
         <Carousel2
           items={poemDisplays}

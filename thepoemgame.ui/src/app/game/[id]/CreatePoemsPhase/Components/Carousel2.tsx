@@ -70,7 +70,7 @@ const Carousel2: React.FC<CarouselProps> = ({
             >
               <Component
                 className={styles.carouselItem}
-                lines={Component.lines}
+                draftLine={isActive ? newLineInput : ""}
               />
             </div>
           );
