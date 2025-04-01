@@ -16,6 +16,13 @@ namespace ThePoemGame.DataAccess.Repositories
             return results.FirstOrDefault();
         }
 
+        public async Task<List<Poem>> GetPoemsAsync(List<Guid> ids)
+        {
+            var filter = Builders<Poem>.Filter.In(p => p.Id, ids);
+            var results = await poems.FindAsync(filter);
+            return await results.ToListAsync();
+        }
+
         public async Task CreatePoemAsync(Poem poem)
         {
             await poems.InsertOneAsync(poem);

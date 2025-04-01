@@ -22,6 +22,11 @@ namespace ThePoemGame.BusinessLogic.Services.Poems
             return await poemRepository.GetPoemAsync(id);
         }
 
+        public async Task<List<Poem>> GetPoemsAsync(List<Guid> ids)
+        {
+            return await poemRepository.GetPoemsAsync(ids);
+        }
+
         public async Task<List<WaitingPoemResponse>> GetPoemsWaitingForUserAsync(string userObjectId)
         {
             var user = await userRepository.GetUserFromAuthenticationAsync(userObjectId);

@@ -32,6 +32,7 @@ interface PoemDisplayProps {
   paperType?: "blue-lined" | "blank-white" | "vintage" | "dark" | "watercolor";
   className?: string;
   onLineClick?: (lineNumber: number) => void; // Optional callback for when a line is clicked
+  draftLine?: string;
 }
 
 const PoemDisplay: React.FC<PoemDisplayProps> = ({
@@ -40,6 +41,7 @@ const PoemDisplay: React.FC<PoemDisplayProps> = ({
   paperType,
   className = "",
   onLineClick,
+  draftLine = "",
 }) => {
   const [containerWidth, setContainerWidth] = useState<number>(0);
   const paperRef = useRef<HTMLDivElement>(null);
@@ -92,6 +94,16 @@ const PoemDisplay: React.FC<PoemDisplayProps> = ({
             containerWidth={containerWidth}
           />
         ))}
+
+        {draftLine && (
+          <PaperLineWrapper
+            key="draft-line"
+            content={draftLine}
+            lineNumber={(poem?.lines?.length || 0) + 1}
+            author={{ id: "id", name: "You" }}
+            containerWidth={containerWidth}
+          />
+        )}
 
         {/* Render blank lines to fill up to totalLines */}
         {Array.from({ length: blankLineCount }).map((_, index) => {

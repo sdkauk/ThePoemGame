@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using ThePoemGame.BusinessLogic.Services.Claims;
 using ThePoemGame.BusinessLogic.Services.Games;
 using ThePoemGame.BusinessLogic.Services.Games.Requests;
@@ -34,6 +35,13 @@ public class PoemsController : ControllerBase
     {
         var poem = await poemService.GetPoemAsync(id);
         return Ok(poem);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetPoems([FromQuery] List<Guid> ids)
+    {
+        var poems = await poemService.GetPoemsAsync(ids);
+        return Ok(poems);
     }
 
     [HttpGet]

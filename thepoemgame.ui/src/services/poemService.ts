@@ -81,6 +81,26 @@ export const poemService = {
     return response.json();
   },
 
+  // Get multiple poems by IDs
+  getPoems: async (ids: string[]): Promise<Poem[]> => {
+    // Build query string with multiple IDs
+    const queryParams = ids
+      .map((id) => `ids=${encodeURIComponent(id)}`)
+      .join("&");
+    const response = await authFetch(
+      `${API_BASE_URL}/api/poems?${queryParams}`,
+      {
+        method: "GET",
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch poems: ${response.statusText}`);
+    }
+
+    return response.json();
+  },
+
   // Create a new poem
   createPoem: async (request: PoemPostRequest): Promise<Poem> => {
     const response = await authFetch(`${API_BASE_URL}/api/poems/create`, {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./RoundRobinPhase.module.css";
 import { Game } from "@/services/gameService";
 import {
@@ -6,6 +6,7 @@ import {
   poemService,
   LineType,
   LinePostRequest,
+  Poem,
 } from "@/services/poemService";
 import PoemCarousel from "../PoemCarousel/PoemCarousel";
 import Button from "@/components/Button/Button";
@@ -14,6 +15,8 @@ import Card from "@/components/Card/card";
 import PoemDisplay from "@/components/PoemDisplay/PoemDisplay";
 import { PaperType } from "../CreatePoemsPhase/Components/PaperStyles";
 import FormItem from "@/components/Form/FormItem/FormItem";
+import Carousel from "../CreatePoemsPhase/Components/Carousel";
+import Carousel2 from "../CreatePoemsPhase/Components/Carousel2";
 
 interface RoundRobinPhaseProps {
   game: Game;
@@ -33,8 +36,39 @@ const RoundRobinPhase: React.FC<RoundRobinPhaseProps> = ({
   const [newLine, setNewLine] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [allPoems, setAllPoems] = useState<Poem[] | null>(null);
+  const [currentPoem, setCurrentPoem] = useState<Poem | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [poemDisplays, setPoemDisplays] = useState<
+    Array<{
+      component: React.FC<any>;
+      name: string;
+    }>
+  >([]);
 
-  const currentPoem = waitingPoems[currentPoemIndex] || null;
+  useEffect(() => {
+    loadPoems();
+  }, [waitingPoems, currentPoemIndex]);
+
+  const loadPoems = async () => {
+    try {
+      setLoading(true);
+      const poemIds = waitingPoems.map((poem) => poem.poemId);
+      const allPoems = await poemService.getPoems(poemIds);
+      setPoemDisplays(
+        allPoems.map((poem) => ({
+          component: (props: any) => <PoemDisplay poem={poem} {...props} />,
+          name: poem.title,
+        }))
+      );
+      setAllPoems(allPoems);
+      setCurrentPoem(allPoems[currentPoemIndex] || null);
+    } catch (error) {
+      console.error("Error fetching poem:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleSubmitLine = async () => {
     if (!currentPoem) return;
@@ -84,40 +118,47 @@ const RoundRobinPhase: React.FC<RoundRobinPhaseProps> = ({
 
   return (
     <div>
-      <PoemCarousel
-        currentPoem={currentPoem}
-        onPrevPoem={onPrevPoem}
-        onNextPoem={onNextPoem}
-        poemCount={waitingPoems.length}
-        currentIndex={currentPoemIndex}
-      />
+      {poemDisplays.length > 0 ? (
+        <Carousel2
+          items={poemDisplays}
+          newLineInput={newLine}
+          initialPosition={currentPoemIndex}
+        />
+      ) : (
+        <div>Loading...</div>
+      )}
+      {/* <PoemDisplay poem={currentPoem} paperType={"blue-lined"} />; */}
 
-      <FormItem htmlFor="newLine" required error={error || undefined}>
-        <div className={styles.inputWithButton}>
-          <div className={styles.inputContainer}>
-            <Input
-              id="firstLine"
-              value={newLine}
-              onChange={(e) => {
-                setNewLine(e.target.value);
-                if (error) setError(null);
-              }}
-              placeholder="Write the first line of your poem..."
-              fullWidth
+      <div className={styles.titleStepContainer}>
+        <div className={styles.titleInputContainer}>
+          <FormItem htmlFor="newLine" required error={error || undefined}>
+            <div className={styles.inputWithButton}>
+              <div className={styles.inputContainer}>
+                <Input
+                  id="firstLine"
+                  value={newLine}
+                  onChange={(e) => {
+                    setNewLine(e.target.value);
+                    if (error) setError(null);
+                  }}
+                  placeholder="Write the first line of your poem..."
+                  fullWidth
+                  size="md"
+                />
+              </div>
+              {/* <Button
+              variant="primary"
+              onClick={handleSubmitPoem}
+              disabled={!firstLine.trim() || isSubmitting}
+              className={styles.inlineButton}
               size="md"
-            />
-          </div>
-          {/* <Button
-            variant="primary"
-            onClick={handleSubmitPoem}
-            disabled={!firstLine.trim() || isSubmitting}
-            className={styles.inlineButton}
-            size="md"
-          >
-            {isSubmitting ? "Creating..." : "Create Poem"}
-          </Button> */}
+            >
+              {isSubmitting ? "Creating..." : "Create Poem"}
+            </Button> */}
+            </div>
+          </FormItem>
         </div>
-      </FormItem>
+      </div>
     </div>
   );
 };

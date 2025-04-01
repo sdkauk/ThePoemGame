@@ -53,3 +53,28 @@
   margin: 0 auto;
   padding: 2rem 0;
 }
+
+.inputWithButton {
+  display: flex;
+  width: 100%;
+  gap: 0.75rem;
+}
+
+/* This container wraps just the Input component to align its height with the button */
+.inputContainer {
+  flex: 1;
+}
+
+.titleInputContainer {
+  width: 100%;
+  max-width: 600px;
+  /* margin: 0 auto 1rem; */
+}
+
+/* Title step styles */
+.titleStepContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

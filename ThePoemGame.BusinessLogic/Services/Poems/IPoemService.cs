@@ -9,6 +9,7 @@ namespace ThePoemGame.BusinessLogic.Services.Poems
         Task<Poem> AddLineToPoemAsync(LinePostRequest request, string userObjectId);
         Task<Poem> CreatePoemAsync(PoemPostRequest request, string userObjectId);
         Task<Poem> GetPoemAsync(Guid id);
+        Task<List<Poem>> GetPoemsAsync(List<Guid> ids);
         Task<List<WaitingPoemResponse>> GetPoemsWaitingForUserAsync(string userObjectId);
     }
 }
